@@ -1,0 +1,7 @@
+.*.sw*
+.env
+*.o
+minish
+a.out
+test.c
+libft.a
