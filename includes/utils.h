@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/10/06 19:17:57 by vim              ###   ########.fr       */
+/*   Updated: 2021/10/29 01:06:19 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@
 
 typedef bool	(*t_validator)(char const);
 
-# include <stdio.h>
+/*
+** Appends char to char const *, freeing char const *
+*/
+char	*utils_strpush(char *str, char const c);
+
 /*
 ** Checks for \t and ' '
 */
 bool	utils_validator_isspace(char const c);
-/*
-** Checks for everything but \'
-*/
-bool	utils_validator_simple_inhibitor(char const c);
-/*
-** Checks for everything but "
-*/
-bool	utils_validator_double_inhibitor(char const c);
 /*
 ** Iterates the string until t_validator returns false
 */
