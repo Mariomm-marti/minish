@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:05:19 by vim               #+#    #+#             */
-/*   Updated: 2021/11/09 04:10:02 by vim              ###   ########.fr       */
+/*   Updated: 2021/11/10 06:29:07 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-static char	**command_save_arguments(char const *str)
+static bool	char_not_inhib(char lock)
 {
-	char	**argv;
-	char	*splitted_arguments;
-	size_t	str_len;
-
-	if (!str)
-		return (NULL);
-	argv = malloc(sizeof(char *));
-	if (!argv)
-		return (NULL);
-	str_len = ft_strlen(str);
-	splitted_arguments = malloc(str_len + 1);
-	if (!splitted_arguments)
-	{
-		free(argv);
-		return (NULL);
-	}
-	ft_memcpy(splitted_arguments, str, str_len + 1);
-	*argv = splitted_arguments;
-	return (argv);
+	return (lock == 0);
 }
 
 void	command_finder(t_command *command)
@@ -50,11 +32,11 @@ void	command_finder(t_command *command)
 	lock = 0;
 	while (*initcmd)
 	{
-		if (utils_validator_isspace(*initcmd) && lock == 0)
+		if (utils_validator_isspace(*initcmd) && char_not_inhib(lock))
 			break ;
 		if (lock == *initcmd)
 			lock = 0;
-		else if ((*initcmd == '"' || *initcmd == '\'') && lock == 0)
+		else if ((*initcmd == '"' || *initcmd == '\'') && char_not_inhib(lock))
 			lock = *initcmd;
 		else
 			pushed_chars = utils_strpush(pushed_chars, *initcmd);
