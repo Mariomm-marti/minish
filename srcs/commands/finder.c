@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:05:19 by vim               #+#    #+#             */
-/*   Updated: 2021/11/10 06:29:07 by vim              ###   ########.fr       */
+/*   Updated: 2021/11/10 07:13:19 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	command_finder(t_command *command)
 			pushed_chars = utils_strpush(pushed_chars, *initcmd);
 		initcmd++;
 	}
-	command->argv = command_save_arguments(initcmd);
+	command->tempargs = ft_strdup(initcmd);
 	free(command->cmd);
 	command->cmd = pushed_chars;
 }

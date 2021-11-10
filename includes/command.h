@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 04:28:52 by vim               #+#    #+#             */
-/*   Updated: 2021/10/06 00:54:14 by vim              ###   ########.fr       */
+/*   Updated: 2021/11/10 07:12:54 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_command
 {
 	char				*cmd;
 	int					argc;
+	char				*tempargs;
 	char				**argv;
 	int					fdin;
 	int					fdout;
