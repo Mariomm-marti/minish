@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 18:39:22 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:55:24 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,11 @@ void	ft_pwd(void);
 */
 
 void	ft_export(char **params);
+
+/*
+**	Showd a list of every non-empty environment variables
+*/
+
+void	ft_env();
 
 #endif
