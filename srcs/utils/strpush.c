@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 13:13:35 by vim               #+#    #+#             */
-/*   Updated: 2021/10/29 01:06:07 by vim              ###   ########.fr       */
+/*   Updated: 2021/11/12 13:25:09 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ char	*utils_strpush(char *str, char const c)
 	ft_memcpy(final_str, str, str_len);
 	*(final_str + str_len) = c;
 	*(final_str + str_len + 1) = 0;
-  free(str);
+	free(str);
 	return (final_str);
 }

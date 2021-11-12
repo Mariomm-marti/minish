@@ -6,13 +6,12 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 18:42:11 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/12 20:00:52 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <builtines.h>
+#include <builtins.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 char	*utils_search_var(char **env, char *var)
 {
@@ -90,4 +89,28 @@ void	utils_create_var(char *var)
 	*(newenv + i++) = utils_generate_var(var, NULL);
 	*(newenv + i) = NULL;
 	environ = newenv;
-}	
+}
+
+void	utils_delete_var(char *var)
+{
+	extern char	**environ;
+	char		**newenv;
+	size_t		env_len;
+	size_t		i;
+	char		j;
+
+	j = 0;
+	env_len = 0;
+	while (*(environ + env_len))
+		env_len++;
+	newenv = (char **)malloc(sizeof(char *) * env_len);
+	i = -1;
+	while (++i < env_len)
+	{
+		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
+			j = 1;
+		*(newenv + i) = *(environ + i + j);
+	}
+	*(newenv + i) = NULL;
+	environ = newenv;
+}

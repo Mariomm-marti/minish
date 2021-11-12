@@ -6,10 +6,11 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 18:40:53 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/12 20:01:51 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <builtins.h>
 #include <unistd.h>
 
 static void	show_vars(void)
