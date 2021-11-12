@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:21:55 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:39:22 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,12 @@ void	ft_echo(char **params);
 */
 
 void	ft_pwd(void);
+
+/*
+**	Allow to set a empty or not empty variable to the environment variables set
+**	Show a list of every variable if there is not params
+*/
+
+void	ft_export(char **params);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/11 19:59:10 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:42:43 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <command.h>
-
 
 void	execute(t_command *cmd, int p[2])
 {
@@ -29,7 +28,6 @@ void	execute(t_command *cmd, int p[2])
 		close(cmd->fdout);
 	execve(cmd->cmd, cmd->argv, NULL);
 }
-
 
 void	exec_command(t_command *cmd)
 {
