@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:33:27 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:16:39 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	ft_cd(const char *path)
 	char		*home;
 	char		*previous_dir;
 	char		*actual_dir;
-	extern char	**environ;
 
 	home = getenv("HOME");
+	if (!home)
+		return (-1);
 	previous_dir = getenv("PWD");
 	if (!*path)
 	{

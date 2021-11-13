@@ -6,36 +6,52 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 13:13:20 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:16:43 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <unistd.h>
 
-int	ft_echo(char **params)
+static bool is_correct_flag(char first_char, char next_char)
 {
-	int		i;
-	char	jump;
+	return (first_char && first_char == '-' && next_char && next_char == 'n');
+}
+
+static bool check_linebreak_flag(char *param)
+{
+	size_t	i;
+	char	first_char;
+	char	next_char;
 
 	i = 0;
-	jump = 0;
-	if (*params && *(*params + i++) == '-')
+	first_char = *(param);
+	next_char = *(param + 1);
+	if (is_correct_flag(first_char, next_char))
 	{
 		while (*(*params + i) == 'n')
 			i++;
 		if (*(*params + i) == '\0')
-			jump = 1;
-		params++;
+			return (true);
 	}
-	while (*params)
-	{
-		while (**params)
-		{
-			write(1, *params, 1);
-			(*params)++;
-		}
+	return (false);
+}
+
+int	ft_echo(char **params)
+{
+	size_t	len;
+	size_t	i;
+	bool	jump;
+
+	jump = check_linebreak_flag(*param);
+	if (jump)
 		params++;
+	i = 0;
+	while (*(params + i))
+	{
+		len = ft_strlen(*(params + i));
+		write(1, params + i, len);
+		i++;
 	}
 	if (!jump)
 		write(1, "\n", 1);

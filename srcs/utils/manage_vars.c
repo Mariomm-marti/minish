@@ -6,25 +6,44 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 20:00:52 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:15:24 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <stdlib.h>
 
-char	*utils_search_var(char **env, char *var)
+static bool exists_var(char *var)
 {
-	size_t	len;
+	return (getenv(var));
+}
 
-	len = ft_strlen(var);
-	while (*env)
+void	utils_update_var(char *var, char *content)
+{
+	extern char	**environ;
+	char		**newenv;
+	size_t		env_len;
+	size_t		i;
+	bool		create;
+
+	create = exists_var(var);
+	env_len = 0;
+	while (*(environ + env_len))
+		env_len++;
+	newenv = (char **)malloc(sizeof(char *) * (env_len + 1 + create));
+	i = 0;
+	while (i < env_len)
 	{
-		if (!ft_strncmp(var, *env, len))
-			return (*env + len + 1);
-		env++;
+		if (!create && !ft_strncmp(*(environ + i), var, ft_strlen(var)))
+			*(newenv + i) = utils_generate_var(var, newcont);
+		else
+			*(newenv + i) = *(environ + i);
+		i++;
 	}
-	return (NULL);
+	if (create)
+		*(newenv + i++) = utils_generate_var(var, newcont);
+	*(newenv + i) = NULL;
+	environ = newenv;
 }
 
 char	*utils_generate_var(char *var, char *newcont)
@@ -46,49 +65,6 @@ char	*utils_generate_var(char *var, char *newcont)
 		*(newvar + var_len + i) = *(newcont + i);
 	*(newvar + var_len + i) = '\0';
 	return (newvar);
-}
-
-void	utils_change_var(char *var, char *newcont)
-{
-	extern char	**environ;
-	char		**newenv;
-	size_t		env_len;
-	size_t		i;
-
-	env_len = 0;
-	while (*(environ + env_len))
-		env_len++;
-	newenv = (char **)malloc(sizeof(char *) * (env_len + 1));
-	i = 0;
-	while (i < env_len)
-	{
-		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
-			*(newenv + i) = utils_generate_var(var, newcont);
-		else
-			*(newenv + i) = *(environ + i);
-		i++;
-	}
-	*(newenv + i) = NULL;
-	environ = newenv;
-}
-
-void	utils_create_var(char *var)
-{
-	extern char	**environ;
-	char		**newenv;
-	size_t		env_len;
-	size_t		i;
-
-	env_len = 0;
-	while (*(environ + env_len))
-		env_len++;
-	newenv = (char **)malloc(sizeof(char *) * (env_len + 2));
-	i = -1;
-	while (++i < env_len)
-		*(newenv + i) = *(environ + i);
-	*(newenv + i++) = utils_generate_var(var, NULL);
-	*(newenv + i) = NULL;
-	environ = newenv;
 }
 
 void	utils_delete_var(char *var)

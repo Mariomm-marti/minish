@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/11/12 13:32:52 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:19:39 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ bool	utils_validator_isspace(char const c);
 char	*utils_strstop(char const *str, t_validator const validator);
 
 /*
-**	A prior it does the same that getenv()
+**	Change or create a new variable depending on it exits or not
 */
 
-char	*utils_search_var(char **env, char *var);
+void	utils_update_var(char *var, char *content);
 
 /*
 **	Create a environment variable with its content
@@ -44,9 +44,9 @@ char	*utils_search_var(char **env, char *var);
 char	*utils_generate_var(char *var, char *newcont);
 
 /*
-**	Change the value of a existent environment variable
+**	Delete an existent environment variable
 */
 
-void	utils_change_var(char *var, char *newcont);
+void	utils_delete_var(char *var, char *newcont);
 
 #endif
