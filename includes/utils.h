@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/11/13 16:19:39 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:28:29 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ char	*utils_strstop(char const *str, t_validator const validator);
 */
 
 void	utils_update_var(char *var, char *content);
-
-/*
-**	Create a environment variable with its content
-*/
-
-char	*utils_generate_var(char *var, char *newcont);
 
 /*
 **	Delete an existent environment variable

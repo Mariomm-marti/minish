@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/13 16:16:50 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:31:13 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	separete_params(char *param, char **var, char **content)
 
 int	ft_export(char **params)
 {
-	extern char	**environ;
 	char		*var;
 	char		*content;
 	size_t		i;

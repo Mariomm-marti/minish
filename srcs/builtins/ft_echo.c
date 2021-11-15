@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/13 16:16:43 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:30:27 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static bool is_correct_flag(char first_char, char next_char)
 {
-	return (first_char && first_char == '-' && next_char && next_char == 'n');
+	return (first_char == '-' && next_char == 'n');
 }
 
 static bool check_linebreak_flag(char *param)
@@ -29,9 +29,9 @@ static bool check_linebreak_flag(char *param)
 	next_char = *(param + 1);
 	if (is_correct_flag(first_char, next_char))
 	{
-		while (*(*params + i) == 'n')
+		while (*(*param + i) == 'n')
 			i++;
-		if (*(*params + i) == '\0')
+		if (*(*param + i) == '\0')
 			return (true);
 	}
 	return (false);

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/13 16:15:24 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:17:51 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	utils_update_var(char *var, char *content)
 	environ = newenv;
 }
 
-char	*utils_generate_var(char *var, char *newcont)
+static char	*utils_generate_var(char *var, char *newcont)
 {
 	char	*newvar;
 	size_t	var_len;
