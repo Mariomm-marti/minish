@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/15 20:31:13 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:45:08 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	print_content(char *content)
 	write(1, "\"", 1);
 	while (*(content + i))
 	{
+		if (*(content + i) == '\"')
+			write(1, "\\", 1);
 		write(1, content + i, 1);
 		i++;
 	}
@@ -63,17 +65,20 @@ static void	show_vars(void)
 	}
 }
 
-static void	separete_params(char *param, char **var, char **content)
+static bool	separete_params(char *param, char **var, char **content)
 {
 	size_t	i;
 	size_t	param_len;
 
 	i = 0;
+	if (*(param + i) == '-')
+		return (false);
 	while (*(param + i) && *(param + i) != '=')
 		i++;
 	param_len = ft_strlen(param);
 	*var = ft_substr(param, 0, i);
 	*content = ft_substr(param, i + 1, param_len - i - 1);
+	return (true);
 }
 
 int	ft_export(char **params)
@@ -87,7 +92,8 @@ int	ft_export(char **params)
 	i = 0;
 	while (*(params + i))
 	{
-		separete_param(*(params + i), &var, &content);
+		if (!separete_param(*(params + i), &var, &content))
+			return (error);
 		utils_modify_var(var, content);
 		i++;
 	}

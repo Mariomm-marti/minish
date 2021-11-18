@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/15 20:30:27 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:39:52 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@ static bool is_correct_flag(char first_char, char next_char)
 static bool check_linebreak_flag(char *param)
 {
 	size_t	i;
-	char	first_char;
-	char	next_char;
 
 	i = 0;
-	first_char = *(param);
-	next_char = *(param + 1);
-	if (is_correct_flag(first_char, next_char))
+	if (is_correct_flag(*param, *(param + 1)))
 	{
 		while (*(*param + i) == 'n')
 			i++;
@@ -43,6 +39,9 @@ int	ft_echo(char **params)
 	size_t	i;
 	bool	jump;
 
+
+	if (!is_correct_flag(**param, *(*(param + 1))))
+		return (error);
 	jump = check_linebreak_flag(*param);
 	if (jump)
 		params++;

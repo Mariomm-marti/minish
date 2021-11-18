@@ -6,12 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/13 16:19:47 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:28:35 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
+
+typedef ssize_t	(*t_builtin)(char const *cmd, char const **argv, int fdin, int fdout);
 
 /*
 **	Change the current directory and update the environment variables PWD 
