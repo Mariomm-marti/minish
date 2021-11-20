@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 15:32:00 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 18:38:10 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,13 @@ static int	change_pwd(char *previous_dir, char *new_pwd)
 	return (0);
 }
 
-int	ft_cd(char *path)
+static void	which_action(char *path, char *home, char *previous_dir, char *actual_dir)
 {
-	char		*home;
-	char		*previous_dir;
-	char		*actual_dir;
-
-	previous_dir = getenv("PWD");
 	if (!*path)
 	{
 		home = getenv("HOME");
 		if (!home)
-			return (!0);
+			return (-1);
 		chdir(home);
 		return (change_pwd(previous_dir, home));
 	}
@@ -47,6 +42,20 @@ int	ft_cd(char *path)
 		actual_dir = getcwd(NULL, 0);
 		return (change_pwd(previous_dir, actual_dir));
 	}
-	errno = ENOENT;
 	return (-1);
+
+}
+ssize_t	ft_cd(char const **argv, int fdin, int fdout)
+{
+	char		*path;
+	char		*home;
+	char		*previous_dir;
+	char		*actual_dir;
+	ssize_t		ret;
+
+	path = ft_strdup(*argv);
+	previous_dir = getenv("PWD");
+	ret = which_action(path, home, previous_dir, actual_dir);
+	free(path);
+	return (ret);
 }

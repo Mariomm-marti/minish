@@ -6,15 +6,36 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/12 18:42:43 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 19:18:02 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <command.h>
 
+int	seek_builtin(char *cmd)
+{
+	size_t	i;
+	const builtins[8] = {"echo", "export", "unset", "cd", "pwd", "exit", "env", NULL};
+
+	if (*cmd == '/')
+		return (-1);
+	i = 0;
+	while (i < 8)
+	{
+		if (!ft_strcmp(cmd, builtins[i]))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 void	execute(t_command *cmd, int p[2])
 {
-	pid_t	pid;
+	pid_t		pid;
+	char		blt;
+	extern char	**environ;
+	const t_builtins	table[8] = {ft_echo, ft_export, ft_unset, ft_cd, ft_pwd, ft_exit, ft_env, NULL};
+
 
 	pid = fork();
 	if (pid != 0)
@@ -26,7 +47,11 @@ void	execute(t_command *cmd, int p[2])
 	dup2(cmd->fdout, 1);
 	if (cmd->fdout != 1)
 		close(cmd->fdout);
-	execve(cmd->cmd, cmd->argv, NULL);
+	blt = seek_builtin(cmd);
+	if (blt >= 0)
+		table[blt](cmd->argv, cmd->fdin, cmd->fdout);
+	else
+		execve(cmd->cmd, cmd->argv, environ);
 }
 
 void	exec_command(t_command *cmd)
@@ -37,12 +62,13 @@ void	exec_command(t_command *cmd)
 
 	cmd1 = cmd;
 	cmd2 = cmd->next;
-	cmd1->fdin = 0;
 	while (cmd2)
 	{
 		pipe(p);
-		cmd1->fdout = p[1];
-		cmd2->fdin = p[0];
+		if (cmd->fdout == 1)
+			cmd1->fdout = p[1];
+		if (cmd->fdin == 0)
+			cmd2->fdin = p[0];
 		execute(cmd1, p);
 		close(p[1]);
 		if (cmd1->fdin)
@@ -50,7 +76,6 @@ void	exec_command(t_command *cmd)
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	cmd1->fdout = 1;
 	execute(cmd1, p);
 	close(cmd1->fdin);
 }

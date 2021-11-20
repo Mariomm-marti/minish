@@ -6,19 +6,19 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:13:48 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 15:38:51 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 18:42:46 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <unistd.h>
 
-int	ft_env(char **args)
+ssize_t	ft_env(char **argv, int fdin, int fdout)
 {
 	extern char	**environ;
 	size_t		i;
 
-	if (args)
+	if (argv)
 		return (127);
 	while (*environ)
 	{
@@ -27,8 +27,8 @@ int	ft_env(char **args)
 		{
 			if (*(*environ + i) == '=')
 			{
-				write(1, *environ, ft_strlen(*environ));
-				write(1, "\n", 1);
+				write(fdout, *environ, ft_strlen(*environ));
+				write(fdout, "\n", 1);
 			}
 			i++;
 		}

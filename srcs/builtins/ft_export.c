@@ -6,42 +6,42 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 16:26:34 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 18:48:15 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <unistd.h>
 
-static void	print_content(char *content)
+static void	print_content(char *content, int fdout)
 {
 	size_t	i;
 
 	i = 0;
-	write(1, "\"", 1);
+	write(fdout, "\"", 1);
 	while (*(content + i))
 	{
 		if (*(content + i) == '\"')
 			write(1, "\\", 1);
-		write(1, content + i, 1);
+		write(fdout, content + i, 1);
 		i++;
 	}
-	write(1, "\"", 1);
-	write(1, "\n", 1);
+	write(fdout, "\"", 1);
+	write(fdout, "\n", 1);
 }
 
-static bool there_is_content(char c)
+static bool there_is_content(char c, int fdout)
 {
 	if (c)
 	{
-		write(1, "\n", 1);
+		write(fdout, "\n", 1);
 		return (false);
 	}
-	write(1, "=", 1);
+	write(fdout, "=", 1);
 	return (true);
 }
 
-static void	show_vars(void)
+static void	show_vars(int fdout)
 {
 	size_t		i;
 	size_t		j;
@@ -59,8 +59,8 @@ static void	show_vars(void)
 			write(1, actual_var + j, 1);
 			j++;
 		}
-		if (there_is_content(*(actual_var + j)))
-			print_content(actual_var + j);
+		if (there_is_content(*(actual_var + j), fdout))
+			print_content(actual_var + j, fdout);
 		i++;
 	}
 }
@@ -86,14 +86,16 @@ static bool	separete_params(char *param, char **var, char **content)
 	return (true);
 }
 
-int	ft_export(char **params)
+ssize_t	ft_export(const char **argv, int fdin, int fdout)
 {
 	char		*var;
 	char		*content;
 	size_t		i;
+	char		**params;
 
+	params = argv;
 	if (!*params)
-		show_vars();
+		show_vars(fdout);
 	i = 0;
 	while (*(params + i))
 	{
