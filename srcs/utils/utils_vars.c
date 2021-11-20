@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   utils_vars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/02 16:13:48 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 15:38:51 by mortega-         ###   ########.fr       */
+/*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
+/*   Updated: 2021/11/20 16:23:53 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
-#include <unistd.h>
 
-int	ft_env(char **args)
+bool	is_valid_identifier(char *var)
 {
-	extern char	**environ;
-	size_t		i;
+	size_t	i;
+	size_t	var_len;
 
-	if (args)
-		return (127);
-	while (*environ)
+	var_len = ft_strlen(var);
+	i = 0;
+	while (i < var_len)
 	{
-		i = 0;
-		while (*(*environ + i))
-		{
-			if (*(*environ + i) == '=')
-			{
-				write(1, *environ, ft_strlen(*environ));
-				write(1, "\n", 1);
-			}
-			i++;
-		}
-		environ++;
+		if (!ft_isalnum(*(var + i)))
+			return (false);
+		i++;
 	}
-	return (0);
+	return (true);
 }

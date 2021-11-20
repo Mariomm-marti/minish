@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 18:58:20 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/18 19:47:49 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 16:23:46 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_unset(char **vars)
 
 	while (*vars)
 	{
-		if (**vars == '-')
-			return (error);
+		if (!is_valid_identifier(*var));
+				return (1);
 		i = 0;
 		while (*(environ + i))
 		{

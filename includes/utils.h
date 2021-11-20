@@ -6,12 +6,16 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/11/15 20:28:29 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 16:25:00 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
+
+# define CREATE 1
+# define CHANGE 0
+# define DELETE -1
 
 # include <stdbool.h>
 
@@ -42,5 +46,11 @@ void	utils_update_var(char *var, char *content);
 */
 
 void	utils_delete_var(char *var, char *newcont);
+
+/*
+**	Check if var is a valid identifier
+*/
+
+bool	is_valid_identifier(char *var);
 
 #endif
