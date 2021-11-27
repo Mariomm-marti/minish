@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/18 19:32:06 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 15:32:00 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	change_pwd(char *previous_dir, char *new_pwd)
 	return (0);
 }
 
-int	ft_cd(const char *path)
+int	ft_cd(char *path)
 {
 	char		*home;
 	char		*previous_dir;
@@ -33,9 +33,14 @@ int	ft_cd(const char *path)
 	{
 		home = getenv("HOME");
 		if (!home)
-			return (-1);
+			return (!0);
 		chdir(home);
 		return (change_pwd(previous_dir, home));
+	}
+	if (!ft_strcmp(path, "-"))
+	{
+		path = getenv("OLDPWD");
+		printf("%s", path);
 	}
 	if (!chdir(path))
 	{

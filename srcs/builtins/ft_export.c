@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/18 19:45:08 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 16:26:34 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	show_vars(void)
 static bool	separete_params(char *param, char **var, char **content)
 {
 	size_t	i;
+	size_t	j;
 	size_t	param_len;
 
 	i = 0;
@@ -77,7 +78,11 @@ static bool	separete_params(char *param, char **var, char **content)
 		i++;
 	param_len = ft_strlen(param);
 	*var = ft_substr(param, 0, i);
+	if (!is_valid_identifier(*var))
+		return (false);
 	*content = ft_substr(param, i + 1, param_len - i - 1);
+	if (!is_valid_identifier(*content))
+		return (false);
 	return (true);
 }
 
@@ -93,8 +98,9 @@ int	ft_export(char **params)
 	while (*(params + i))
 	{
 		if (!separete_param(*(params + i), &var, &content))
-			return (error);
+			return (1);
 		utils_modify_var(var, content);
 		i++;
 	}
+	return (0);
 }

@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   manage_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/18 19:28:33 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 16:21:24 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <stdlib.h>
-
-#define CREATE 1
-#define CHANGE 0
-#define DELETE -1
 
 static char	what_action_var(char *var, char *content)
 {
@@ -50,6 +46,8 @@ static char	*utils_generate_var(char *var, char *newcont)
 	var_len = ft_strlen(var);
 	newcont_len = ft_strlen(newcont);
 	newvar = (char *)malloc(sizeof(char) * (var_len + newcont_len + 2));
+	if (!newvar)
+		return NULL;
 	i = -1;
 	while (++i < var_len)
 		*(newvar + i) = *(var + i);
@@ -97,5 +95,7 @@ void	utils_update_var(char *var, char *content)
 	chd = what_action_var(var, content);
 	env_len = environ_len();
 	newenv = (char **)malloc(sizeof(char *) * (env_len + 1 + chd));
+	if (!newenv)
+		return ;
 	update_action(newenv, var, content, chd);
 }
