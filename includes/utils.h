@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/11/20 16:25:00 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:25:34 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	utils_update_var(char *var, char *content);
 void	utils_delete_var(char *var, char *newcont);
 
 /*
-**	Check if var is a valid identifier
+**	Check if var is a valid identifier which means var is composed by
+**	isalnum characters
 */
 
 bool	is_valid_identifier(char *var);

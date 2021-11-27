@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 19:00:44 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:27:21 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 // I want to believe this is enough prototype for all the builtins but I don't sure
 
 typedef ssize_t	(*t_builtin)(char const **argv, int fdin, int fdout);
+
+/*
+**	Search if the current command is a builtin of our shell
+*/
+
+int	seek_builtin(char *cmd);
 
 /*
 **	Change the current directory and update the environment variables PWD 

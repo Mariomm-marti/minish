@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 18:20:10 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:22:05 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,5 @@ void	execute(t_command *cmd, int p[2]);
 
 void	exec_command(t_command *cmd);
 
-/*
-**	Search if the current command is a builtin of our shell
-*/
-
-(*t_builtin)	seek_builtin(char *cmd);
 
 #endif
