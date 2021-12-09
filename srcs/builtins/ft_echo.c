@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 15:33:52 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/11/20 18:44:24 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ static bool check_linebreak_flag(char *param)
 	return (false);
 }
 
-int	ft_echo(char **params)
+ssize_t	ft_echo(const char **argv, int fdin, int fdout)
 {
 	size_t	len;
 	size_t	i;
 	bool	jump;
+	char	**params;
 
 
+	params = argv;
 	if (!is_correct_flag(**param, *(*(param + 1))))
-		return (error);
+		return (-1);
 	jump = check_linebreak_flag(*param);
 	if (jump)
 		params++;
@@ -49,10 +51,10 @@ int	ft_echo(char **params)
 	while (*(params + i))
 	{
 		len = ft_strlen(*(params + i));
-		write(1, params + i, len);
+		write(fdout, params + i, len);
 		i++;
 	}
 	if (!jump)
-		write(1, "\n", 1);
+		write(fdout, "\n", 1);
 	return (0);
 }
