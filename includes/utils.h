@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2021/11/27 18:25:34 by mortega-         ###   ########.fr       */
+/*   Updated: 2021/12/11 21:31:58 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ char	*utils_strstop(char const *str, t_validator const validator);
 */
 
 void	utils_update_var(char *var, char *content);
-
-/*
-**	Delete an existent environment variable
-*/
-
-void	utils_delete_var(char *var, char *newcont);
 
 /*
 **	Check if var is a valid identifier which means var is composed by

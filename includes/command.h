@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 04:28:52 by vim               #+#    #+#             */
-/*   Updated: 2021/12/11 20:51:26 by vim              ###   ########.fr       */
+/*   Updated: 2021/12/11 20:52:03 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_command	*command_splitter(char const *line);
 
 void		command_iterator(t_command *cmd, t_command_iter const iterator);
 
+void		command_replace_vars(t_command *cmd);
 void		command_finder(t_command *cmd);
 
 #endif
