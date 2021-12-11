@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 20:31:30 by vim               #+#    #+#             */
-/*   Updated: 2021/12/11 22:17:13 by vim              ###   ########.fr       */
+/*   Updated: 2021/12/11 22:24:29 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,4 @@ void	command_replace_vars(t_command *cmd)
 	}
 	free(cmd->cmd);
 	cmd->cmd = finalstr;
-}
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdio.h>
-int		main(void)
-{
-	t_command	command;
-
-	command.cmd = readline("miniSH$ ");
-	command_replace_vars(&command);
-	printf("\nFINAL:\n%s\n", command.cmd);
-	free(command.cmd);
 }
