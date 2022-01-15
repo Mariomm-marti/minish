@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 20:31:30 by vim               #+#    #+#             */
-/*   Updated: 2021/12/11 22:24:29 by vim              ###   ########.fr       */
+/*   Updated: 2021/12/31 15:05:50 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	command_replace_vars(t_command *cmd)
 	while (*cmdstr)
 	{
 		if (!should_resolve_var(*cmdstr, inhib_state)
-				|| get_var_endp(cmdstr) == cmdstr)
+			|| get_var_endp(cmdstr) == cmdstr)
 			finalstr = utils_strpush(finalstr, *cmdstr);
 		else
 		{

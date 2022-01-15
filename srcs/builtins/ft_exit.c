@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 18:58:20 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:05:30 by mortega-         ###   ########.fr       */
+/*   Created: 2022/01/15 16:48:28 by mortega-          #+#    #+#             */
+/*   Updated: 2022/01/15 17:00:01 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
-#include <utils.h>
-#include <stdlib.h>
+#include <libft.h>
 
-ssize_t	ft_unset(const char **argv, int fdin, int fdout)
+ssize_t  ft_exit(char const **argv, int fdin, int fdout)
 {
-	extern char	**environ;
-	size_t		i;
-	char		**vars;
-
-	vars = (char **)(argv + 1);
-	while (*vars)
-	{
-		if (!is_valid_identifier(*var))
-			return (1);
-		i = 0;
-		while (*(environ + i))
-		{
-			if (getenv(*var))
-				utils_update_var(*vars, NULL);
-			i++;
-		}
-		vars++;
-	}
+	exit(*(argv + 1));
 	return (0);
 }

@@ -6,11 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 16:21:24 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:12:36 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
+#include <utils.h>
+#include <libft.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 static char	what_action_var(char *var, char *content)
@@ -47,7 +50,7 @@ static char	*utils_generate_var(char *var, char *newcont)
 	newcont_len = ft_strlen(newcont);
 	newvar = (char *)malloc(sizeof(char) * (var_len + newcont_len + 2));
 	if (!newvar)
-		return NULL;
+		return (NULL);
 	i = -1;
 	while (++i < var_len)
 		*(newvar + i) = *(var + i);
@@ -59,7 +62,7 @@ static char	*utils_generate_var(char *var, char *newcont)
 	return (newvar);
 }
 
-static void update_action(char **newenv, char *var, char *content, char chd)
+static void	update_action(char **newenv, char *var, char *content, char chd)
 {
 	size_t	env_len;
 	size_t	i;

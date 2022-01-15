@@ -6,14 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/27 18:27:21 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:39:45 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-// I want to believe this is enough prototype for all the builtins but I don't sure
+# include <sys/types.h>
 
 typedef ssize_t	(*t_builtin)(char const **argv, int fdin, int fdout);
 
@@ -21,7 +21,7 @@ typedef ssize_t	(*t_builtin)(char const **argv, int fdin, int fdout);
 **	Search if the current command is a builtin of our shell
 */
 
-int	seek_builtin(char *cmd);
+int		seek_builtin(char *cmd);
 
 /*
 **	Change the current directory and update the environment variables PWD 
@@ -60,5 +60,11 @@ ssize_t	ft_env(char const **argv, int fdin, int fdout);
 */
 
 ssize_t	ft_unset(char const **argv, int fdin, int fdout);
+
+/*
+**	Exit of the program with the input code
+*/
+
+ssize_t	ft_exit(char const **argv, int fdin, int fdout);
 
 #endif
