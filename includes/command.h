@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 04:28:52 by vim               #+#    #+#             */
-/*   Updated: 2021/12/11 20:52:03 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/02 21:56:02 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct s_command
 {
 	char				*cmd;
 	int					argc;
-	char				*tempargs;
 	char				**argv;
 	int					fdin;
 	int					fdout;
@@ -26,11 +25,14 @@ typedef struct s_command
 
 typedef void	(*t_command_iter)(t_command *);
 
-t_command	*command_splitter(char const *line);
+t_command	*parser_parse(char *line);
+void		parser_free(t_command *commands);
 
 void		command_iterator(t_command *cmd, t_command_iter const iterator);
 
+t_command	*command_splitter(char const *line);
 void		command_replace_vars(t_command *cmd);
-void		command_finder(t_command *cmd);
+void		command_redirections(t_command *cmd);
+void		command_do_arguments(t_command *cmd);
 
 #endif
