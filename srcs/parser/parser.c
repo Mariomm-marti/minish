@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:15:08 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 01:14:10 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/03 03:12:17 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_command	*parser_parse(char *line)
 	command_iterator(commands, command_replace_vars);
 	command_iterator(commands, command_redirections);
 	command_iterator(commands, command_do_arguments);
+	command_iterator(commands, command_resolve_path);
 	return (commands);
 }
 
