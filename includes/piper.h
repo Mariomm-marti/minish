@@ -6,16 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2021/12/31 15:08:48 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:01:10 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPER_H
 # define PIPER_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/wait.h>
+# include <command.h>
 
 /*
 **	EXEC COMMAND
