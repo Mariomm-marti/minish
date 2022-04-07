@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:06:45 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:12:08 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	show_vars(int fdout)
 static bool	separete_params(char *param, char **var, char **content)
 {
 	size_t	i;
-	size_t	j;
 	size_t	param_len;
 
 	i = 0;
@@ -96,13 +95,15 @@ ssize_t	ft_export(const char **argv, int fdin, int fdout)
 	size_t		i;
 	char		**params;
 
+	(void)fdin;
+	(void)fdout;
 	params = (char **)(argv + 1);
 	if (!*params)
 		show_vars(fdout);
 	i = 0;
 	while (*(params + i))
 	{
-		if (!separete_param(*(params + i), &var, &content))
+		if (!separete_params(*(params + i), &var, &content))
 			return (1);
 		utils_update_var(var, content);
 		i++;

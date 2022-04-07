@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 16:43:35 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:00:24 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/08 00:02:45 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	show_prompt(void)
 	char		*user;
 	char		*home;
 	char		*abs_dir;
-	char		*dir;
 	extern char	**environ;
 
 	user = getenv("USER");

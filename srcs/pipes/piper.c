@@ -6,12 +6,13 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:00:55 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/08 00:03:45 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <command.h>
 #include <piper.h>
+#include <unistd.h>
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
@@ -37,7 +38,7 @@ int	seek_builtin(char *cmd)
 void	execute(t_command *cmd, int p[2])
 {
 	pid_t				pid;
-	char				blt;
+	int					blt;
 	extern char			**environ;
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};

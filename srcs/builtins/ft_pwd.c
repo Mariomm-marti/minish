@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 19:48:16 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:03:05 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:12:22 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
 {
 	char	*buf;
 
+	(void)fdin;
+	(void)fdout;
 	if (**(argv + 1) == '-' && *(*(argv + 1) + 1) != '\0')
 		return (1);
 	buf = getcwd(NULL, 0);

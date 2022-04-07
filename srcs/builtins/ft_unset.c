@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 18:58:20 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:05:30 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:12:50 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ ssize_t	ft_unset(const char **argv, int fdin, int fdout)
 	size_t		i;
 	char		**vars;
 
+	(void)fdin;
+	(void)fdout;
 	vars = (char **)(argv + 1);
 	while (*vars)
 	{
-		if (!is_valid_identifier(*var))
+		if (!is_valid_identifier(*vars))
 			return (1);
 		i = 0;
 		while (*(environ + i))
 		{
-			if (getenv(*var))
+			if (getenv(*vars))
 				utils_update_var(*vars, NULL);
 			i++;
 		}

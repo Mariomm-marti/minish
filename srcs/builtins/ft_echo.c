@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 16:59:28 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:07:28 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ ssize_t	ft_echo(const char **argv, int fdin, int fdout)
 	bool	jump;
 	char	**params;
 
+	(void)fdin; (void)fdout;
 	params = (char  **)(argv + 1);
-	jump = check_linebreak_flag(*param);
+	jump = check_linebreak_flag(*params);
 	if (jump)
 		params++;
 	i = 0;

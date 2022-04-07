@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 16:59:04 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:06:53 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ ssize_t	ft_cd(char const **argv, int fdin, int fdout)
 	char		*actual_dir;
 	ssize_t		ret;
 
+	(void)fdin;
+	(void)fdout;
+	home = NULL;
+	actual_dir = NULL;
 	path = ft_strdup(*(argv + 1));
 	previous_dir = getenv("PWD");
 	ret = which_action(path, home, previous_dir, actual_dir);

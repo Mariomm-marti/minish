@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:12:36 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:15:49 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,20 @@ static char	*utils_generate_var(char *var, char *newcont)
 
 static void	update_action(char **newenv, char *var, char *content, char chd)
 {
-	size_t	env_len;
-	size_t	i;
-	bool	dlte;
+	extern char	**environ;
+	size_t		env_len;
+	size_t		i;
+	bool		dlte;
 
 	dlte = false;
+	env_len = environ_len();
 	i = 0;
 	while (i < env_len)
 	{
 		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
 		{
 			if (chd == CHANGE)
-				*(newnev + i) = utils_generate_var(var, content);
+				*(newenv + i) = utils_generate_var(var, content);
 			else if (chd == DELETE)
 				dlte = true;
 		}
