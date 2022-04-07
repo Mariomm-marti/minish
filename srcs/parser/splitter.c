@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 04:56:28 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 01:04:36 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/08 00:23:41 by vim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,14 @@ static void	command_push(t_command **cmd, char *cmdstr)
 		return ;
 	}
 	newcmd->argv = malloc(sizeof(char *));
+	if (!newcmd->argv)
+	{
+		free(newcmd);
+		return ;
+	}
 	*(newcmd->argv) = NULL;
 	head = *cmd;
+	newcmd->fdout = 1;
 	while (head->next != NULL)
 		head = head->next;
 	head->next = newcmd;
