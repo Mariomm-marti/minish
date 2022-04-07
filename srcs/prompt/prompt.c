@@ -6,14 +6,15 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 16:43:35 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/18 20:13:01 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:14:18 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <libft.h>
 #include <stdlib.h>
 
-static char	*relative_dir()
+static char	*relative_dir(void)
 {
 	char	*abs_dir;
 	char	*home;
@@ -49,11 +50,11 @@ static void	print_prompt(char *user, char *home, char *abs_dir)
 
 void	show_prompt(void)
 {
-	char	*user;
-	char	*home;
-	char	*abs_dir;
-	char	*dir;
-	extern char **environ;
+	char		*user;
+	char		*home;
+	char		*abs_dir;
+	char		*dir;
+	extern char	**environ;
 
 	user = getenv("USER");
 	home = getenv("HOME");

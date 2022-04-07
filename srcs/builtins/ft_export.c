@@ -6,11 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2021/11/20 18:48:15 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:06:45 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
+#include <utils.h>
+#include <libft.h>
+#include <stdbool.h>
 #include <unistd.h>
 
 static void	print_content(char *content, int fdout)
@@ -30,9 +33,9 @@ static void	print_content(char *content, int fdout)
 	write(fdout, "\n", 1);
 }
 
-static bool there_is_content(char c, int fdout)
+static bool	there_is_content(char c, int fdout)
 {
-	if (c)
+	if (!c)
 	{
 		write(fdout, "\n", 1);
 		return (false);
@@ -93,7 +96,7 @@ ssize_t	ft_export(const char **argv, int fdin, int fdout)
 	size_t		i;
 	char		**params;
 
-	params = argv;
+	params = (char **)(argv + 1);
 	if (!*params)
 		show_vars(fdout);
 	i = 0;
@@ -101,7 +104,7 @@ ssize_t	ft_export(const char **argv, int fdin, int fdout)
 	{
 		if (!separete_param(*(params + i), &var, &content))
 			return (1);
-		utils_modify_var(var, content);
+		utils_update_var(var, content);
 		i++;
 	}
 	return (0);
