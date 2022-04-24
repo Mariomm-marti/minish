@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 01:50:41 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 03:23:27 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/24 19:44:31 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*resolve_path(char const *str)
 
 	folders = ft_split(getenv("PATH"), ':');
 	if (!folders)
-		return (ft_strdup(""));
+		return (NULL);
 	counter = 0;
 	found = false;
 	while (*(folders + counter))
@@ -66,19 +66,12 @@ void	command_resolve_path(t_command *cmd)
 
 	cmdstr = *(cmd->argv);
 	free(cmd->cmd);
+	cmd->cmd = NULL;
+	if (!cmdstr)
+		return ;
 	if (*cmdstr == '/')
 	{
-		cmd->cmd = cmdstr;
-		return ;
-	}
-	if (*cmdstr == '.' && *(cmdstr + 1) == '.' && *(cmdstr + 2) == '/')
-	{
-		cmd->cmd = cmdstr;
-		return ;
-	}
-	if (*cmdstr == '.' && *(cmdstr + 1) == '/')
-	{
-		cmd->cmd = cmdstr;
+		cmd->cmd = ft_strdup(cmdstr);
 		return ;
 	}
 	cmd->cmd = resolve_path(cmdstr);
