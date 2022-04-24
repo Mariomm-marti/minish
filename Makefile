@@ -6,14 +6,16 @@
 #    By: vim <vim@42urduliz.com>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 00:39:14 by vim               #+#    #+#              #
-#    Updated: 2022/04/08 13:51:19 by vim              ###   ########.fr        #
+#    Updated: 2022/04/24 19:47:09 by mmartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MINISH_MSG		= @echo "  \x1b[40m\x1b[38;2;16;19;33m\x1b[40m\x1b[01;37m     miniSH \x1b[0m\x1b[30m\x1b[0m\x1b[0;90m $(1)\x1b[0m"
 
 MINISH_SRCS		= $(wildcard srcs/*/*.c srcs/*.c)
+MINISH_TSRCS	= $(wildcard srcs/*/*.c testers/*.c)
 MINISH_OBJS		= $(MINISH_SRCS:.c=.o)
+MINISH_TOBJS	= $(MINISH_TSRCS:.c=.o)
 
 MINISH_NAME		= miniSH
 
@@ -26,11 +28,16 @@ $(MINISH_NAME):	depends $(MINISH_OBJS)
 				@clang $(MINISH_OBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
 				$(call MINISH_MSG,"Finished compiling project!")
 
+test:			depends $(MINIH_TOBJS)
+				@echo ""
+				@clang $(MINISH_TOBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
+				$(call MINISH_MSG,"Finished compiling project!")
+
 depends:
 				$(call MINISH_MSG,"Attempting to compile required dependencies...")
 				@(test ! -f ./libft.a && make -s -C srcs/libft LIBFT_OUT=$(PWD)) || true
 				$(call MINISH_MSG,"Finished compiling dependencies")
-				$(call MINISH_MSG,"Working on compiling miniRT...")
+				$(call MINISH_MSG,"Working on compiling miniSH...")
 
 all:			$(MINISH_NAME)
 
