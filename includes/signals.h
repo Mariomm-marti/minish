@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 16:48:28 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/24 11:17:49 by mortega-         ###   ########.fr       */
+/*   Created: 2022/04/24 11:32:48 by mortega-          #+#    #+#             */
+/*   Updated: 2022/04/24 11:34:40 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtins.h>
-#include <libft.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
-ssize_t  ft_exit(char const **argv, int fdin, int fdout)
-{
-	(void)fdin;
-	(void)fdout;
-	exit(ft_atoi(*(argv + 1)));
-	return (0);
-}
+/*
+**	Signal-Handler function
+*/
+
+void	handler(int sig);
+
+#endif

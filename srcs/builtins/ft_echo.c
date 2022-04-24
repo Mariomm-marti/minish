@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:07:28 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/24 11:25:40 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <libft.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <stdio.h> ///
 
 static bool	is_correct_flag(char first_char, char next_char)
 {
@@ -42,7 +43,7 @@ ssize_t	ft_echo(const char **argv, int fdin, int fdout)
 	bool	jump;
 	char	**params;
 
-	(void)fdin; (void)fdout;
+	(void)fdin;
 	params = (char  **)(argv + 1);
 	jump = check_linebreak_flag(*params);
 	if (jump)

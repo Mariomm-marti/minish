@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:03:45 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/24 12:46:33 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
+#include <stdio.h> //////
 
 int	seek_builtin(char *cmd)
 {
@@ -23,12 +24,14 @@ int	seek_builtin(char *cmd)
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
 		"exit", "env"};
 
-	if (*cmd == '/')
-		return (-1);
+	//if (*cmd == '/')
+	//	return (-1);
+	char	*s = ft_strrchr(cmd, '/') + 1;
+	//printf("S = %s\n", s);
 	i = 0;
 	while (i < 7)
 	{
-		if (!ft_strcmp(cmd, builtins[i]))
+		if (!ft_strcmp(s, builtins[i]))
 			return (i);
 		i++;
 	}
@@ -55,7 +58,10 @@ void	execute(t_command *cmd, int p[2])
 		close(cmd->fdout);
 	blt = seek_builtin(cmd->cmd);
 	if (blt >= 0)
+	{
 		table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout);
+		exit(0);
+	}
 	else
 		execve(cmd->cmd, cmd->argv, environ);
 }
@@ -68,6 +74,8 @@ void	exec_command(t_command *cmd)
 
 	cmd1 = cmd;
 	cmd2 = cmd->next;
+	cmd1->fdin = 0; //
+	cmd1->fdout = 1; //
 	while (cmd2)
 	{
 		pipe(p);
@@ -81,5 +89,6 @@ void	exec_command(t_command *cmd)
 		cmd2 = cmd2->next;
 	}
 	execute(cmd1, p);
-	close(cmd1->fdin);
+	if (cmd1->fdin)
+		close(cmd1->fdin);
 }

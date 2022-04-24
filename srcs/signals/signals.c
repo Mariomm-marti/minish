@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 16:48:28 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/24 11:17:49 by mortega-         ###   ########.fr       */
+/*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
+/*   Updated: 2022/04/24 12:29:05 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtins.h>
-#include <libft.h>
+#include <signal.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
+#include <utils.h>
 
-ssize_t  ft_exit(char const **argv, int fdin, int fdout)
+void	handler(int sig)
 {
-	(void)fdin;
-	(void)fdout;
-	exit(ft_atoi(*(argv + 1)));
-	return (0);
+	if (sig == SIGINT)
+	{
+		// all-free function
+		write(1, "\n", 1);
+		show_prompt();
+		//exit(130);
+	}
+	else if (sig == SIGQUIT)
+		;
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 }

@@ -1,0 +1,17 @@
+****************************************
+		COSITAS
+****************************************
+
+Cosas para ti:
+->	Linea vacía peta
+->	La struct no guarda algunos de los builtins
+->	Repasar los fd, se asignan correctamente?? Se cierran correctamente?? (command-free)
+->	Haz pruebas del parser, para romperlo. Tu lo conoces mejor que yo
+->	Hacer pruebas del heredoc (Primero arreglar lo de la asignacion de fds)
+->	El historial es funcional??
+->	Lo que pensaste sobre devolver el código de error está hecho??
+
+----
+Cosas para mí:
+-> Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
+-> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
