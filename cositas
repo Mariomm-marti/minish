@@ -7,19 +7,25 @@ LEYENDA:
 🚫 Es parte de la otra persona
 🤔 No se entiende el problema
 ⏳ Trabajando en ello
+ ? En Discusion
 
 Cosas para ti:
 🎯 >	Linea vacía peta 
 🚫 >	La struct no guarda algunos de los builtins
-🤔 >	Repasar los fd, se asignan correctamente?? Se cierran correctamente?? (command-free)
+			-> Si la struct la haces tú cómo va a ser mío??
+🤔 >	Repasar los fd, se asignan correctamente?? Se cierran correctamente?? (command-free) 
+			-> No puedes cerrarlos, porque cierras el stdin y el stdout (Así no funciona ningun programa xq no hay flujo de datos)
 ⏳ >	Haz pruebas del parser, para romperlo. Tu lo conoces mejor que yo
 🤔 >	Hacer pruebas del heredoc (Primero arreglar lo de la asignacion de fds)
 🚫 >	El historial es funcional??
+			-> Y una M (Te recuerdo diciendo "Sí sí, tranquilo, eso lo hago en 20 minutos")
 ⏳ >	Lo que pensaste sobre devolver el código de error está hecho??
 
 ----
 Cosas para mí:
 -> Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
 -> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
- >	La struct no guarda algunos de los builtins
- >	El historial es funcional??
+🎯 Repaso de los builtins, es mejor hacer el último comando en el proceso principal, xq si no, no se guarda
+🎯 Show_prompt devuelve la string en vez de imprimirla
+ ?	La struct no guarda algunos de los builtins
+ ?	El historial es funcional??

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/21 18:03:45 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:54:08 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	change_pwd(char *previous_dir, char *new_pwd)
 static ssize_t	which_action(char *path, char *home, char *previous_dir,
 		char *actual_dir)
 {
-	if (!*path)
+	if (!path)
 	{
 		home = getenv("HOME");
 		if (!home)
@@ -61,7 +61,10 @@ ssize_t	ft_cd(char const **argv, int fdin, int fdout)
 	(void)fdout;
 	home = NULL;
 	actual_dir = NULL;
-	path = ft_strdup(*(argv + 1));
+	if (!(*(argv + 1)))
+		path = NULL;
+	else
+		path = ft_strdup(*(argv + 1));
 	previous_dir = getenv("PWD");
 	ret = which_action(path, home, previous_dir, actual_dir);
 	free(path);

@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/24 13:00:05 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:39:12 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int		main(void)
 	{
 		signal(SIGINT, handler);
 		signal(SIGQUIT, handler);
-		show_prompt();
+		//printf("Prompt: %s\n", show_prompt());
+		printf("Y peto\n");
 		line = readline("");
+		printf("|%s|\n", line);
 		add_history(line);
 		commands = parser_parse(line);
 		free(line);

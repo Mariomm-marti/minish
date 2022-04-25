@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 16:43:35 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:02:45 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/25 16:45:43 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,20 @@ static char	*relative_dir(void)
 	return (ft_substr(abs_dir, home_len + 1, rel_dir_len));
 }
 
-static void	print_prompt(char *user, char *home, char *abs_dir)
+static char	*print_prompt(char *user, char *home, char *abs_dir)
 {
 	char	*dir;
+	char	*prompt;
 
-	write(1, user, ft_strlen(user));
-	write(1, "|", 1);
+	dir = ft_strjoin(user, "|");
 	if (ft_strcmp(abs_dir, home))
-	{
-		dir = relative_dir();
-		write(1, dir, ft_strlen(dir));
-	}
+		prompt = ft_strjoin(dir, relative_dir());
 	else
-		write(1, "~", 1);
-	write(1, "$ ", 2);
+		prompt = ft_strjoin(dir, "~");
+	return (ft_strjoin(prompt, "$ "));
 }
 
-void	show_prompt(void)
+char	*show_prompt(void)
 {
 	char		*user;
 	char		*home;
@@ -60,7 +57,7 @@ void	show_prompt(void)
 	home = getenv("HOME");
 	abs_dir = getenv("PWD");
 	if (!user || !home || !abs_dir)
-		write(1, "minishv1.0$ ", 12);
+		return(ft_strdup("minishv1.0$"));
 	else
-		print_prompt(user, home, abs_dir);
+		return (print_prompt(user, home, abs_dir));
 }

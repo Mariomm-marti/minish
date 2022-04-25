@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2022/04/07 23:38:50 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/25 16:42:03 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ bool	is_valid_identifier(char *var);
 /*
 ** Displays the beginning of the prompt line to the user
 */
-void	show_prompt(void);
+char	*show_prompt(void);
 
 #endif
