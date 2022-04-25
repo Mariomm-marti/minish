@@ -27,5 +27,4 @@ Cosas para mí:
 -> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
 🎯 Repaso de los builtins, es mejor hacer el último comando en el proceso principal, xq si no, no se guarda
 🎯 Show_prompt devuelve la string en vez de imprimirla
- ?	La struct no guarda algunos de los builtins
  ?	El historial es funcional??

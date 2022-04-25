@@ -6,7 +6,7 @@
 #    By: vim <vim@42urduliz.com>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 00:39:14 by vim               #+#    #+#              #
-#    Updated: 2022/04/24 19:47:09 by mmartin-         ###   ########.fr        #
+#    Updated: 2022/04/25 19:31:38 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(MINISH_NAME):	depends $(MINISH_OBJS)
 				@clang $(MINISH_OBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
 				$(call MINISH_MSG,"Finished compiling project!")
 
-test:			depends $(MINIH_TOBJS)
+test:			depends $(MINISH_TOBJS)
 				@echo ""
 				@clang $(MINISH_TOBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
 				$(call MINISH_MSG,"Finished compiling project!")

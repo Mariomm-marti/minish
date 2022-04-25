@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/25 18:43:18 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/25 20:02:36 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ int	seek_builtin(char *cmd)
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
 		"exit", "env"};
 
-	//if (*cmd == '/')
-	//	return (-1);
 	if (!cmd)
-		return -1;
-	char	*s = ft_strrchr(cmd, '/') + 1;
-	//printf("S = %s\n", s);
+		return (-1);
 	i = 0;
 	while (i < 7)
 	{
-		if (!ft_strcmp(s, builtins[i]))
+		if (!ft_strcmp(cmd, builtins[i]))
 			return (i);
 		i++;
 	}
@@ -48,8 +44,7 @@ void	execute(t_command *cmd, int p[2])
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};
 
-	blt = seek_builtin(cmd->cmd);
-	printf("blt = %d\n", blt);
+	blt = seek_builtin(*(cmd->argv));
 	if (blt < 0)
 	{
 		pid = fork();
@@ -76,10 +71,7 @@ void	exec_command(t_command *cmd)
 	t_command	*cmd2;
 
 	cmd1 = cmd;
-	printf("Cmd = %s\n", cmd->cmd);
 	cmd2 = cmd->next;
-	cmd1->fdin = 0; //
-	cmd1->fdout = 1; //
 	while (cmd2)
 	{
 		pipe(p);
