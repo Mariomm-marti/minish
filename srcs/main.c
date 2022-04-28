@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/28 22:39:56 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 01:45:27 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <command.h>
 #include <libft.h>
 #include <signals.h>
-#include <unistd.h>	/////
 
 int		main(void)
 {
@@ -28,6 +27,7 @@ int		main(void)
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 	commands = NULL;
+	utils_update_var("?", "0");
 	while (true)
 	{
 		line = readline("miniSH$ ");
@@ -37,7 +37,16 @@ int		main(void)
 		add_history(line);
 		commands = parser_parse(line);
 		free(line);
+		if (!utils_validator_command_line(commands))
+		{
+			printf("miniSH: command not found\n");
+			utils_update_var("?", "127");
+			parser_free(commands);
+			continue ;
+		}
 		exec_command(commands);
+		//TODO
+		utils_update_var("?", "0");
 		while (wait(NULL) > 0)
 			;
 		parser_free(commands);
