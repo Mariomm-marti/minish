@@ -6,14 +6,21 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:01:10 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/29 00:46:42 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPER_H
 # define PIPER_H
 
+# include <sys/types.h>
 # include <command.h>
+
+/*
+**	Search if the current command is a builtin of our shell
+*/
+
+static int		seek_builtin(char *cmd);
 
 /*
 **	EXEC COMMAND
@@ -21,7 +28,7 @@
 **	according the situation.
 */
 
-void	execute(t_command *cmd, int p[2]);
+static ssize_t	execute(t_command *cmd, int p[2]);
 
 /*
 **	PIPER

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/28 20:28:19 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 01:51:53 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <stdio.h> //////
 
-int	seek_builtin(char *cmd)
+static int	seek_builtin(char *cmd)
 {
 	size_t		i;
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
@@ -36,7 +36,7 @@ int	seek_builtin(char *cmd)
 	return (-1);
 }
 
-void	execute(t_command *cmd, int p[2])
+static ssize_t execute(t_command *cmd, int p[2])
 {
 	pid_t				pid;
 	int					blt;
@@ -49,19 +49,23 @@ void	execute(t_command *cmd, int p[2])
 	{
 		pid = fork();
 		if (pid != 0)
-			return ;
+			return (0);
 		if (cmd->fdout != 1)
 			close(p[0]);
 		dup2(cmd->fdin, 0);
 		close(cmd->fdin);
+		printf("Antes\n");
+		//printf("fdout = %d\n", cmd->fdout);
 		dup2(cmd->fdout, 1);
 		if (cmd->fdout != 1)
 			close(cmd->fdout);
+		sleep(10);
 	}
 	if (blt >= 0)
-		table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout);
+		return (table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout));
 	else
-		execve(cmd->cmd, cmd->argv, environ);
+		return (execve(cmd->cmd, cmd->argv, environ));
+	printf("Despues\n");
 }
 
 void	exec_command(t_command *cmd)
@@ -77,14 +81,21 @@ void	exec_command(t_command *cmd)
 		pipe(p);
 		cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
-		execute(cmd1, p);
+		if (execute(cmd1, p) < 0)
+		{
+			printf("%s: not working", cmd1->cmd);
+			break ;
+		}
 		close(p[1]);
 		if (cmd1->fdin)
 			close(cmd1->fdin);
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	execute(cmd1, p);
+	if (execute(cmd1, p) < 0)
+		printf("%s: not working", cmd1->cmd);
 	if (cmd1->fdin)
 		close(cmd1->fdin);
+	if (cmd1->fdout != 1)
+		close(cmd1->fdout);
 }
