@@ -6,12 +6,13 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 01:13:16 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 01:13:27 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/29 00:41:26 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <stdlib.h>
+#include <utils.h>
 #include <command.h>
 #include <stdio.h>
 
@@ -42,6 +43,7 @@ int	main(void)
 	t_command	*cmd;
 	char		*line;
 
+	utils_update_var("?", "0");
 	line = readline("CMD: ");
 	cmd = parser_parse(line);
 	print_all(cmd);
