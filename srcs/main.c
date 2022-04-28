@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/25 20:01:54 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:43:54 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <piper.h>
 #include <utils.h>
 #include <command.h>
+#include <libft.h>
 #include <signals.h>
 #include <unistd.h>	/////
 
@@ -23,14 +24,18 @@ int		main(void)
 {
 	t_command	*commands;
 	char		*line;
-
+	
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 	commands = NULL;
+
 	while (true)
 	{
-		signal(SIGINT, handler);
-		signal(SIGQUIT, handler);
-		printf("%s", show_prompt());
-		line = readline("");
+		//line = readline(show_prompt());
+		line = readline("caca$ ");
+		printf("");
+		if (EOF && !line)
+			break ;
 		add_history(line);
 		commands = parser_parse(line);
 		free(line);
@@ -39,4 +44,5 @@ int		main(void)
 			;
 		parser_free(commands);
 	}
+	// return (el error);
 }

@@ -11,8 +11,7 @@ LEYENDA:
 
 Cosas para ti:
 🎯 >	Linea vacía peta 
-🚫 >	La struct no guarda algunos de los builtins
-			-> Si la struct la haces tú cómo va a ser mío??
+🎯 >	La struct no guarda algunos de los builtins
 🤔 >	Repasar los fd, se asignan correctamente?? Se cierran correctamente?? (command-free) 
 			-> No puedes cerrarlos, porque cierras el stdin y el stdout (Así no funciona ningun programa xq no hay flujo de datos)
 ⏳ >	Haz pruebas del parser, para romperlo. Tu lo conoces mejor que yo
@@ -23,8 +22,24 @@ Cosas para ti:
 
 ----
 Cosas para mí:
--> Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
+
+*****************
+->	Problema: No se puede iniciar Vim desde miniSH
+->	Pipes +  redirección se complica
+->	Realmente se me complica todo lo que es con redirecciones (<, >, <<, >>)
+*****************
+
+
+🎯 Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
+	--> Tengo que si la linea esta vacía cerrar el stdin y cerrar el programa
 -> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
+	--> Pensar en pruebas, esto mejor hacerlo con Mario
+
 🎯 Repaso de los builtins, es mejor hacer el último comando en el proceso principal, xq si no, no se guarda
 🎯 Show_prompt devuelve la string en vez de imprimirla
  ?	El historial es funcional??
+ 	--> Tengo que leer sobre las funciones del historial y ver cómo usarlas
+	--> Qué es lo que tiene que hacer el historial?? (Pregunta importante Jaja)
+
+-> Gestión del error: devolver lo que haya devuelto el último programa ejecutado
+	- Guardarlo en la variable $?
