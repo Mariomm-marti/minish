@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/28 20:28:19 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 01:40:40 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
-#include <stdio.h> //////
 
 int	seek_builtin(char *cmd)
 {
@@ -24,8 +23,9 @@ int	seek_builtin(char *cmd)
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
 		"exit", "env"};
 
-	if (!cmd)
-		return (-1);
+	//if (*cmd == '/')
+	//	return (-1);
+	//printf("S = %s\n", s);
 	i = 0;
 	while (i < 7)
 	{
@@ -44,22 +44,22 @@ void	execute(t_command *cmd, int p[2])
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};
 
-	blt = seek_builtin(*(cmd->argv));
-	if (blt < 0)
-	{
-		pid = fork();
-		if (pid != 0)
-			return ;
-		if (cmd->fdout != 1)
-			close(p[0]);
-		dup2(cmd->fdin, 0);
-		close(cmd->fdin);
-		dup2(cmd->fdout, 1);
-		if (cmd->fdout != 1)
-			close(cmd->fdout);
-	}
+	pid = fork();
+	if (pid != 0)
+		return ;
+	if (cmd->fdout != 1)
+		close(p[0]);
+	dup2(cmd->fdin, 0);
+	close(cmd->fdin);
+	dup2(cmd->fdout, 1);
+	if (cmd->fdout != 1)
+		close(cmd->fdout);
+	blt = seek_builtin(cmd->argv[0]);
 	if (blt >= 0)
+	{
 		table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout);
+		exit(0);
+	}
 	else
 		execve(cmd->cmd, cmd->argv, environ);
 }
