@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/28 18:43:54 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/28 22:39:56 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ int		main(void)
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 	commands = NULL;
-
 	while (true)
 	{
-		//line = readline(show_prompt());
-		line = readline("caca$ ");
-		printf("");
+		line = readline("miniSH$ ");
+		rl_redisplay();
 		if (EOF && !line)
 			break ;
 		add_history(line);
