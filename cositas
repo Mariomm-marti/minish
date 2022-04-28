@@ -24,7 +24,6 @@ Cosas para ti:
 Cosas para mí:
 
 *****************
-->	Problema: No se puede iniciar Vim desde miniSH
 ->	Pipes +  redirección se complica
 ->	Realmente se me complica todo lo que es con redirecciones (<, >, <<, >>)
 *****************
@@ -37,7 +36,7 @@ Cosas para mí:
 
 🎯 Repaso de los builtins, es mejor hacer el último comando en el proceso principal, xq si no, no se guarda
 🎯 Show_prompt devuelve la string en vez de imprimirla
- ?	El historial es funcional??
+🎯 El historial es funcional??
  	--> Tengo que leer sobre las funciones del historial y ver cómo usarlas
 	--> Qué es lo que tiene que hacer el historial?? (Pregunta importante Jaja)
 
