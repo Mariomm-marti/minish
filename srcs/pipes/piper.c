@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 01:59:22 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:06:37 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <libft.h>
 #include <stdlib.h>
 
-static int	seek_builtin(char *cmd)
+int	seek_builtin(char *cmd)
 {
 	size_t		i;
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
@@ -36,7 +36,8 @@ static int	seek_builtin(char *cmd)
 	return (-1);
 }
 
-static ssize_t execute(t_command *cmd, int p[2])
+#include <stdio.h>
+ssize_t execute(t_command *cmd, int p[2])
 {
 	pid_t				pid;
 	int					blt;
@@ -59,7 +60,6 @@ static ssize_t execute(t_command *cmd, int p[2])
 		dup2(cmd->fdout, 1);
 		if (cmd->fdout != 1)
 			close(cmd->fdout);
-		sleep(10);
 	}
 	if (blt >= 0)
 		return (table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout));

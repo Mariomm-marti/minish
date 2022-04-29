@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:14:19 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 16:39:45 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 00:45:57 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <sys/types.h>
 
 typedef ssize_t	(*t_builtin)(char const **argv, int fdin, int fdout);
-
-/*
-**	Search if the current command is a builtin of our shell
-*/
-
-int		seek_builtin(char *cmd);
 
 /*
 **	Change the current directory and update the environment variables PWD 
