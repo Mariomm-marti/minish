@@ -60,4 +60,8 @@ Cosas para mí:
 ->	rutas absolutas no existentes
 ->	echo -n
 ->	se rompe el historial con Ctrl+C
-
+->	buffer
+-> pwd en un directorio borrado
+-> export =123
+-> ""
+-> segfault EOF heredoc
