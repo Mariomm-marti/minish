@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 03:53:47 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:55:44 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <libft.h>
 #include <signals.h>
 
-int		main(void)
+int	main(void)
 {
 	t_command	*commands;
 	char		*line;
