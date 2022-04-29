@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 05:26:11 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:13:35 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,4 @@ void	exec_command(t_command *cmd)
 		cmd2 = cmd2->next;
 	}
 	execute(cmd1, p, 1);
-	if (cmd1->fdin)
-		close(cmd1->fdin);
 }

@@ -32,7 +32,7 @@ Cosas para mí:
 🎯 Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
 	--> Tengo que si la linea esta vacía cerrar el stdin y cerrar el programa
 
--> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
+🎯	Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
 	--> Pensar en pruebas, esto mejor hacerlo con Mario
 
 🎯 Repaso de los builtins, es mejor hacer el último comando en el proceso principal, xq si no, no se guarda
@@ -47,7 +47,11 @@ Cosas para mí:
 🎯 Gestión del error: devolver lo que haya devuelto el último programa ejecutado
 	- Guardarlo en la variable $?
 
--> Parser - redirects - numeros
--> Bug cuantico: export
+🎯	Parser - redirects - numeros
 
-->	CAT - STDIN
+🎯	Bug cuantico: export
+
+🎯	CAT - STDIN
+
+🎯	SIGNALS / echo -n / buffer
+
