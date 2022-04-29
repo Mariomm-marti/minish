@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 18:58:20 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:12:50 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/30 00:26:47 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <utils.h>
 #include <stdlib.h>
 
+#include <stdio.h>
 ssize_t	ft_unset(const char **argv, int fdin, int fdout)
 {
 	extern char	**environ;
-	size_t		i;
 	char		**vars;
 
 	(void)fdin;
@@ -27,13 +27,8 @@ ssize_t	ft_unset(const char **argv, int fdin, int fdout)
 	{
 		if (!is_valid_identifier(*vars))
 			return (1);
-		i = 0;
-		while (*(environ + i))
-		{
-			if (getenv(*vars))
-				utils_update_var(*vars, NULL);
-			i++;
-		}
+		if (getenv(*vars))
+			utils_update_var(*vars, NULL);
 		vars++;
 	}
 	return (0);

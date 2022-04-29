@@ -65,8 +65,14 @@ Cosas para mí:
 
 🎯	rutas absolutas no existentes
 
--> segfault EOF heredoc
+🎯	segfault EOF heredoc
 
-->	echo -n
-->	se rompe el historial con Ctrl+C
-->	buffer
+🎯	echo -n
+🎯	se rompe el historial con Ctrl+C
+🎯	buffer
+
+->	norminette
+
+->	main
+
+->	pruebas random
