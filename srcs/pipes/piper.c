@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 03:10:25 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:26:40 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	seek_builtin(char *cmd)
 	return (-1);
 }
 
-ssize_t execute(t_command *cmd, int p[2], char last)
+ssize_t	execute(t_command *cmd, int p[2], char last)
 {
 	pid_t				pid;
 	int					blt;
@@ -75,16 +75,14 @@ void	exec_command(t_command *cmd)
 		pipe(p);
 		cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
-		if (execute(cmd1, p, 0) < 0)
-			;
+		execute(cmd1, p, 0);
 		close(p[1]);
 		if (cmd1->fdin)
 			close(cmd1->fdin);
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	if (execute(cmd1, p, 1) < 0)
-		printf("%s: not working", cmd1->cmd);
+	execute(cmd1, p, 1);
 	if (cmd1->fdin)
 		close(cmd1->fdin);
 }

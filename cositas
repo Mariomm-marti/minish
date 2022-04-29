@@ -41,6 +41,8 @@ Cosas para mí:
  	--> Tengo que leer sobre las funciones del historial y ver cómo usarlas
 	--> Qué es lo que tiene que hacer el historial?? (Pregunta importante Jaja)
 
--> Mirar cuando no existe la variable
+->	Mirar cuando no existe la variable
+->	Linea vacia
+
 🎯 Gestión del error: devolver lo que haya devuelto el último programa ejecutado
 	- Guardarlo en la variable $?
