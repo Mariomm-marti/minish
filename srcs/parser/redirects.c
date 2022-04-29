@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 06:07:04 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 22:28:23 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	do_heredoc(int const fd, char const *end)
 	char	*line;
 
 	line = readline(">");
-	while (ft_strcmp(line, end))
+	while (line && ft_strcmp(line, end))
 	{
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
