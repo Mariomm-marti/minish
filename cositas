@@ -55,3 +55,9 @@ Cosas para mí:
 
 🎯	SIGNALS / echo -n / buffer
 
+->	||
+
+->	rutas absolutas no existentes
+->	echo -n
+->	se rompe el historial con Ctrl+C
+

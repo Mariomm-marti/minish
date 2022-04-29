@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 04:08:57 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:36:26 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <stdlib.h>
 #include <utils.h>
 #include <stdbool.h>
-
-# include <stdio.h> /////
 
 bool	is_valid_identifier(char *var)
 {

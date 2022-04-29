@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 06:28:49 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:35:41 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 void	handler(int sig)
 {
-	//TODO all-free function
 	if (sig == SIGINT)
 	{
 		rl_on_new_line();

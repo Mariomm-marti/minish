@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 05:13:14 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:59:42 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(void)
 		exec_command(commands);
 		while (wait(&status) > 0)
 			;
-		line = ft_itoa(status);
+		line = ft_itoa((unsigned char)status);
 		utils_update_var("?", line);
 		free(line);
 		parser_free(commands);
