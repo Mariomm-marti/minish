@@ -6,7 +6,7 @@
 #    By: vim <vim@42urduliz.com>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 00:39:14 by vim               #+#    #+#              #
-#    Updated: 2022/04/25 19:31:38 by mortega-         ###   ########.fr        #
+#    Updated: 2022/04/29 00:40:48 by mmartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,16 @@ MINISH_NAME		= miniSH
 
 %.o : %.c
 				@printf "  \x1b[40m\x1b[38;2;16;19;33m\x1b[40m\x1b[01;37m     miniSH \x1b[0m\x1b[30m\x1b[0m\x1b[0;90m Compiling \x1b[0;30m$@...                \x1b[0m\r"
-				@clang -Wall -Werror -Wextra -Iincludes -Isrcs/libft/includes -c $< -o $@ -O3
+				@clang -Wall -Werror -Wextra -Iincludes -Isrcs/libft/includes -g3 -O0 -fsanitize=address -c $< -o $@
 
 $(MINISH_NAME):	depends $(MINISH_OBJS)
 				@echo ""
-				@clang $(MINISH_OBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
+				@clang $(MINISH_OBJS) -L. -lft -lreadline -g3 -O0 -fsanitize=address -o ./$(MINISH_NAME)
 				$(call MINISH_MSG,"Finished compiling project!")
 
 test:			depends $(MINISH_TOBJS)
 				@echo ""
-				@clang $(MINISH_TOBJS) -L. -lft -lreadline -o ./$(MINISH_NAME) -O3
+				@clang $(MINISH_TOBJS) -L. -lft -lreadline -g3 -O0 -fsanitize=address -o ./$(MINISH_NAME)
 				$(call MINISH_MSG,"Finished compiling project!")
 
 depends:

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 00:46:42 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 01:58:08 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,20 @@
 # include <command.h>
 
 /*
-**	Search if the current command is a builtin of our shell
-*/
-
-static int		seek_builtin(char *cmd);
-
-/*
 **	EXEC COMMAND
 **	Execute the commads with their arguments and to alias the fd's as 0 or 1
 **	according the situation.
 */
 
-static ssize_t	execute(t_command *cmd, int p[2]);
+void	execute(t_command *cmd, int p[2]);
 
 /*
 **	PIPER
 **	Create a process for each pipe and assign fd's (input and output) for
 **	each command.
 */
-
 void	exec_command(t_command *cmd);
+
+int	seek_builtin(char *cmd);
 
 #endif

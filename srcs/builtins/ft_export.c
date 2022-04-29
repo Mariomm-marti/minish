@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:12:08 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/29 01:09:54 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static bool	there_is_content(char c, int fdout)
 	return (true);
 }
 
+#include <stdio.h>
 static void	show_vars(int fdout)
 {
 	size_t		i;
@@ -55,6 +56,11 @@ static void	show_vars(int fdout)
 	while (*(environ + i))
 	{
 		j = 0;
+		if (ft_strncmp(*(environ + i), "?", 1) == 0)
+		{
+			i++;
+			continue ;
+		}
 		write(1, "declare -x ", 11);
 		actual_var = *(environ + i);
 		while (*(actual_var + j) && *(actual_var + j) != '=')
@@ -96,7 +102,6 @@ ssize_t	ft_export(const char **argv, int fdin, int fdout)
 	char		**params;
 
 	(void)fdin;
-	(void)fdout;
 	params = (char **)(argv + 1);
 	if (!*params)
 		show_vars(fdout);

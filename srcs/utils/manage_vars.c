@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/08 00:15:49 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/29 01:24:46 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static char	*utils_generate_var(char *var, char *newcont)
 	*(newvar + i) = '=';
 	i = -1;
 	while (++i < newcont_len)
-		*(newvar + var_len + i) = *(newcont + i);
-	*(newvar + var_len + i) = '\0';
+		*(newvar + var_len + i + 1) = *(newcont + i);
+	*(newvar + var_len + i + 1) = '\0';
 	return (newvar);
 }
 
@@ -87,7 +87,6 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 	}
 	if (chd == CREATE)
 		*(newenv + i) = utils_generate_var(var, content);
-	*(newenv + i) = NULL;
 	environ = newenv;
 }
 
@@ -100,6 +99,7 @@ void	utils_update_var(char *var, char *content)
 	chd = what_action_var(var, content);
 	env_len = environ_len();
 	newenv = (char **)malloc(sizeof(char *) * (env_len + 1 + chd));
+	*(newenv + env_len + chd) = NULL;
 	if (!newenv)
 		return ;
 	update_action(newenv, var, content, chd);

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 01:51:53 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 01:59:22 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
-#include <stdio.h> //////
 
 static int	seek_builtin(char *cmd)
 {
@@ -24,8 +23,9 @@ static int	seek_builtin(char *cmd)
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
 		"exit", "env"};
 
-	if (!cmd)
-		return (-1);
+	//if (*cmd == '/')
+	//	return (-1);
+	//printf("S = %s\n", s);
 	i = 0;
 	while (i < 7)
 	{
