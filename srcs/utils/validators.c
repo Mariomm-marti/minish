@@ -6,10 +6,11 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:38:24 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 06:37:41 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 20:51:31 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <stdbool.h>
 #include <piper.h>
 #include <stdlib.h>
@@ -37,16 +38,11 @@ bool	utils_check_quotes(char const *line)
 
 bool	utils_check_pipeline(t_command *cmds)
 {
-	bool	status;
-
-	status = true;
 	while (cmds)
 	{
-		if (!cmds->cmd && (!cmds->argv || !*(cmds->argv)
-				|| seek_builtin(cmds->argv[0]) == -1)
-			&& *(cmds->argv[0]) != '.')
-			status = false;
+		if (!cmds->cmd || ft_split_count(cmds->argv) == 0)
+			return (false);
 		cmds = cmds->next;
 	}
-	return (status);
+	return (true);
 }
