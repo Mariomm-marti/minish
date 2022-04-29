@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:13:50 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:20:04 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **	Execute the commads with their arguments and to alias the fd's as 0 or 1
 **	according the situation.
 */
-ssize_t	execute(t_command *cmd, int p[2]);
+ssize_t execute(t_command *cmd, int p[2], char last);
 
 /*
 **	PIPER

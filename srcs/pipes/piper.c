@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:10:35 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:20:37 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ int	seek_builtin(char *cmd)
 	const char	*builtins[7] = {"echo", "export", "unset", "cd", "pwd",
 		"exit", "env"};
 
-	//if (*cmd == '/')
-	//	return (-1);
-	//printf("S = %s\n", s);
 	i = 0;
 	while (i < 7)
 	{
@@ -36,8 +33,7 @@ int	seek_builtin(char *cmd)
 	return (-1);
 }
 
-#include <stdio.h>
-ssize_t execute(t_command *cmd, int p[2])
+ssize_t execute(t_command *cmd, int p[2], char last)
 {
 	pid_t				pid;
 	int					blt;
@@ -51,12 +47,10 @@ ssize_t execute(t_command *cmd, int p[2])
 		pid = fork();
 		if (pid != 0)
 			return (0);
-		if (cmd->fdout != 1)
+		if (last == 0)
 			close(p[0]);
 		dup2(cmd->fdin, 0);
 		close(cmd->fdin);
-		printf("Antes\n");
-		//printf("fdout = %d\n", cmd->fdout);
 		dup2(cmd->fdout, 1);
 		if (cmd->fdout != 1)
 			close(cmd->fdout);
@@ -65,7 +59,6 @@ ssize_t execute(t_command *cmd, int p[2])
 		return (table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout));
 	else
 		return (execve(cmd->cmd, cmd->argv, environ));
-	printf("Despues\n");
 }
 
 void	exec_command(t_command *cmd)
@@ -81,21 +74,16 @@ void	exec_command(t_command *cmd)
 		pipe(p);
 		cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
-		if (execute(cmd1, p) < 0)
-		{
-			printf("%s: not working", cmd1->cmd);
-			break ;
-		}
+		if (execute(cmd1, p, 0) < 0)
+			;
 		close(p[1]);
 		if (cmd1->fdin)
 			close(cmd1->fdin);
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	if (execute(cmd1, p) < 0)
+	if (execute(cmd1, p, 1) < 0)
 		printf("%s: not working", cmd1->cmd);
 	if (cmd1->fdin)
 		close(cmd1->fdin);
-	if (cmd1->fdout != 1)
-		close(cmd1->fdout);
 }
