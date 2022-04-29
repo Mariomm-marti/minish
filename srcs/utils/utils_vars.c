@@ -6,14 +6,17 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 17:11:48 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 04:08:57 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
+#include <utils.h>
 #include <stdbool.h>
+
+# include <stdio.h> /////
 
 bool	is_valid_identifier(char *var)
 {
@@ -24,7 +27,7 @@ bool	is_valid_identifier(char *var)
 	i = 0;
 	while (i < var_len)
 	{
-		if (!ft_isalnum(*(var + i)))
+		if (!ft_isalnum(*(var + i)) && !utils_validator_isspace(*(var + i)))
 			return (false);
 		i++;
 	}

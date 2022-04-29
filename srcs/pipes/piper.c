@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 03:26:40 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 05:26:11 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 		if (last == 0)
 			close(p[0]);
 		dup2(cmd->fdin, 0);
-		close(cmd->fdin);
+		if (cmd->fdin)
+			close(cmd->fdin);
 		dup2(cmd->fdout, 1);
 		if (cmd->fdout != 1)
 			close(cmd->fdout);

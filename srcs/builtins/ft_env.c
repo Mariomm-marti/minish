@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:13:48 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 03:25:08 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 04:55:03 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,30 @@ ssize_t	ft_env(char const **argv, int fdin, int fdout)
 {
 	extern char	**environ;
 	size_t		i;
+	size_t		j;
 
-	printf("Hola q ase\n");
 	(void)fdin;
 	if (*(argv + 1))
 		return (127);
-	while (*environ)
+	j = 0;
+	while (*(environ + j))
 	{
 		i = 0;
+		if (ft_strncmp(*(environ + j), "?", 1) == 0)
+		{
+			j++;
+			continue ;
+		}
 		while (*(*environ + i))
 		{
 			if (*(*environ + i) == '=')
 			{
-				write(fdout, *environ, ft_strlen(*environ));
+				write(fdout, *(environ + j), ft_strlen(*(environ + j)));
 				write(fdout, "\n", 1);
 			}
 			i++;
 		}
-		environ++;
+		j++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 03:46:29 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 05:20:12 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@
 
 void	handler(int sig)
 {
-//TODO all-free function
-	(void)sig;
+	//TODO all-free function
+	if (sig == SIGINT)
+	{
+		rl_redisplay();
+		write(1, "\nminiSH$ ", 9);
+	}
+	else if (sig == SIGQUIT)
+		write(1, "", 0);
 	utils_update_var("?", "130");
 }
