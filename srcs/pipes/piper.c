@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:52:22 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:10:25 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ ssize_t execute(t_command *cmd, int p[2], char last)
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};
 
-	int i = 0;
-	while (*(environ + i))
-		printf("|%s|\n", *(environ + i++));
 	blt = seek_builtin(*(cmd->argv));
 	if (blt < 0)
 	{
