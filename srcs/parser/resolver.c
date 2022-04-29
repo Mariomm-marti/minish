@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 01:50:41 by vim               #+#    #+#             */
-/*   Updated: 2022/04/24 19:44:31 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:18:10 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	command_resolve_path(t_command *cmd)
 	cmdstr = *(cmd->argv);
 	free(cmd->cmd);
 	cmd->cmd = NULL;
-	if (!cmdstr)
+	if (!cmdstr || !ft_strcmp(cmdstr, ".") || !ft_strcmp(cmdstr, ".."))
 		return ;
-	if (*cmdstr == '/')
+	if (access(cmdstr, X_OK) == 0)
 	{
 		cmd->cmd = ft_strdup(cmdstr);
 		return ;
