@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:14:48 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 04:15:09 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+#include <stdio.h> ////
+
 static void	print_content(char *content, int fdout)
 {
 	size_t	i;
 
-	i = 0;
+	i = 1;
 	write(fdout, "\"", 1);
 	while (*(content + i))
 	{
@@ -60,11 +62,11 @@ static void	show_vars(int fdout)
 			i++;
 			continue ;
 		}
-		write(1, "declare -x ", 11);
+		write(fdout, "declare -x ", 11);
 		actual_var = *(environ + i);
 		while (*(actual_var + j) && *(actual_var + j) != '=')
 		{
-			write(1, actual_var + j, 1);
+			write(fdout, actual_var + j, 1);
 			j++;
 		}
 		if (there_is_content(*(actual_var + j), fdout))
@@ -88,8 +90,6 @@ static bool	separete_params(char *param, char **var, char **content)
 	if (!is_valid_identifier(*var))
 		return (false);
 	*content = ft_substr(param, i + 1, param_len - i - 1);
-	if (!is_valid_identifier(*content))
-		return (false);
 	return (true);
 }
 
