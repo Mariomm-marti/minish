@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 03:13:23 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:53:47 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,26 @@ int		main(void)
 	while (true)
 	{
 		line = readline("miniSH$ ");
-		rl_redisplay();
 		if (!line)
 			break ;
 		if (!*utils_strstop(line, utils_validator_isspace))
 			continue ;
+		if (!utils_check_quotes(line))
+		{
+			printf("miniSH: quotes error\n");
+			utils_update_var("?", "127");
+			continue ;
+		}
 		add_history(line);
 		commands = parser_parse(line);
 		free(line);
+		if (!utils_check_pipeline(commands))
+		{
+			printf("miniSH: unknown command\n");
+			utils_update_var("?", "127");
+			parser_free(commands);
+			continue ;
+		}
 		exec_command(commands);
 		while (wait(&status) > 0)
 			;
@@ -48,5 +60,4 @@ int		main(void)
 		free(line);
 		parser_free(commands);
 	}
-	//TODO clear history
 }
