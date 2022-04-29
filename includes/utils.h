@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 02:15:40 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:48:20 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ char	*utils_strpush(char *str, char const c);
 */
 bool	utils_validator_isspace(char const c);
 
-bool	utils_validator_command_line(t_command *cmd);
+bool	utils_check_quotes(char const *line);
+
+bool	utils_check_pipeline(t_command *cmds);
 
 /*
 ** Iterates the string until t_validator returns false
