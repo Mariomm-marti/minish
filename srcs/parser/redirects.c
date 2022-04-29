@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 05:30:17 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 06:07:04 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ static char	*process_redirect(char *cmd, int *fdin, int *fdout)
 		*fdout = open(filename, O_WRONLY | O_CREAT | O_SYMLINK | O_TRUNC, 0644);
 	else if (*cmd == '<' && *(cmd + 1) == '<')
 	{
-		*fdin = open("/tmp/_tmp", O_RDWR | O_CREAT | O_TRUNC | O_APPEND, 0644);
+		*fdin = open("/tmp/_tmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
 		do_heredoc(*fdin, filename);
+		close(*fdin);
+		*fdin = open("/tmp/_tmp", O_RDONLY | O_CREAT | O_SYMLINK, 0644);
 	}
 	else if (*cmd == '<')
 		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK, 0644);
