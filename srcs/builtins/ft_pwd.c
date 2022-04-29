@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 19:48:16 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/25 19:02:17 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:16:45 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
 {
-	char	*buf;
+	char		*buf;
 	const char	*param;
 
 	(void)fdin;

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 01:09:54 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:14:48 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static bool	there_is_content(char c, int fdout)
 	return (true);
 }
 
-#include <stdio.h>
 static void	show_vars(int fdout)
 {
 	size_t		i;

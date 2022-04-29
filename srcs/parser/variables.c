@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 20:31:30 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 01:03:57 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:13:19 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static char	*get_var_endp(char *cmdstr)
 	return (cmdstr - 1);
 }
 
-#include <stdio.h>
 static char	*resolve_var(char *user_in, char *resolved)
 {
 	size_t const	var_len = (size_t)(get_var_endp(user_in) - user_in);

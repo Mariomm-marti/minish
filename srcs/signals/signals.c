@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 01:59:43 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:14:06 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include <libft.h>
 #include <utils.h>
 
+//TODO all-free function
 void	handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		// all-free function
 		printf("\r\nminiSH$ ");
 		utils_update_var("?", "130");
 	}

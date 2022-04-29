@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:48:28 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/24 11:17:49 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:16:36 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-ssize_t  ft_exit(char const **argv, int fdin, int fdout)
+ssize_t	ft_exit(char const **argv, int fdin, int fdout)
 {
 	(void)fdin;
 	(void)fdout;
