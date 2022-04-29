@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 06:59:42 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:10:31 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ int	main(void)
 		if (!line)
 			break ;
 		if (!*utils_strstop(line, utils_validator_isspace))
+		{
+			free(line);
 			continue ;
+		}
 		if (!utils_check_quotes(line))
 		{
 			printf("miniSH: quotes error\n");
 			utils_update_var("?", "127");
+			free(line);
 			continue ;
 		}
 		add_history(line);
@@ -60,4 +64,6 @@ int	main(void)
 		free(line);
 		parser_free(commands);
 	}
+	if (line)
+		free(line);
 }

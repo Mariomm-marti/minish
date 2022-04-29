@@ -55,13 +55,15 @@ Cosas para mí:
 
 🎯	SIGNALS / echo -n / buffer
 
-->	||
+-> pwd en un directorio borrado
+-> export =123
 
+->	||
+-> ""
 ->	rutas absolutas no existentes
+
+-> segfault EOF heredoc
+
 ->	echo -n
 ->	se rompe el historial con Ctrl+C
 ->	buffer
--> pwd en un directorio borrado
--> export =123
--> ""
--> segfault EOF heredoc
