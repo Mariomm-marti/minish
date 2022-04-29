@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/02 21:06:11 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/29 05:20:46 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*get_filename(char *cmd, char **endp)
 		cmd++;
 	while (utils_validator_isspace(*cmd))
 		cmd++;
-	while (!(lock == 0 && utils_validator_isspace(*cmd)) && *cmd)
+	while (*cmd && !(lock == 0 && utils_validator_isspace(*cmd)))
 	{
 		if (lock == *cmd)
 			lock = 0;
@@ -74,7 +74,7 @@ static char	*process_redirect(char *cmd, int *fdin, int *fdout)
 		do_heredoc(*fdin, filename);
 	}
 	else if (*cmd == '<')
-		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK | O_TRUNC, 0644);
+		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK, 0644);
 	free((char *)filename);
 	return (endp);
 }
