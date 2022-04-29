@@ -6,13 +6,14 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 19:48:16 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:16:45 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 20:31:53 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <libft.h>
 #include <unistd.h>
+#include <dirent.h>
 #include <stdio.h>
 
 ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
@@ -22,6 +23,11 @@ ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
 
 	(void)fdin;
 	param = *(argv + 1);
+	if (!opendir(param))
+	{
+		printf("directory cannot be accessed\n");
+		return (1);
+	}
 	if (param && *param == '-' && *(param + 1) != '\0')
 		return (1);
 	buf = getcwd(NULL, 0);

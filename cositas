@@ -55,12 +55,15 @@ Cosas para mí:
 
 🎯	SIGNALS / echo -n / buffer
 
--> pwd en un directorio borrado
--> export =123
+🎯	pwd en un directorio borrado
 
-->	||
--> ""
-->	rutas absolutas no existentes
+🎯	export =123
+
+🎯	||
+
+🎯	""
+
+🎯	rutas absolutas no existentes
 
 -> segfault EOF heredoc
 

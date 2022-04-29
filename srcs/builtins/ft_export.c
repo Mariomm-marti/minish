@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 04:15:09 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:18:24 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static bool	separete_params(char *param, char **var, char **content)
 	size_t	param_len;
 
 	i = 0;
-	if (*(param + i) == '-')
+	if (*(param + i) == '-' || *(param + i) == '=')
 		return (false);
 	while (*(param + i) && *(param + i) != '=')
 		i++;
