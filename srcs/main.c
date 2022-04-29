@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 02:26:13 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:13:23 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,20 @@ int		main(void)
 	{
 		line = readline("miniSH$ ");
 		rl_redisplay();
-		if (EOF && !line)
+		if (!line)
 			break ;
+		if (!*utils_strstop(line, utils_validator_isspace))
+			continue ;
 		add_history(line);
 		commands = parser_parse(line);
 		free(line);
-		if (!utils_validator_command_line(commands))
-		{
-			printf("miniSH: command not found\n");
-			utils_update_var("?", "127");
-			parser_free(commands);
-			continue ;
-		}
 		exec_command(commands);
-		//TODO
-		utils_update_var("?", "0");
 		while (wait(&status) > 0)
 			;
-		printf("Vaue = %d\n", status);
+		line = ft_itoa(status);
+		utils_update_var("?", line);
+		free(line);
 		parser_free(commands);
 	}
+	//TODO clear history
 }
