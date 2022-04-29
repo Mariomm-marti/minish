@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 02:11:32 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 02:26:13 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(void)
 {
 	t_command	*commands;
 	char		*line;
+	int			status;
 	
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
@@ -47,8 +48,9 @@ int		main(void)
 		exec_command(commands);
 		//TODO
 		utils_update_var("?", "0");
-		while (wait(NULL) > 0)
+		while (wait(&status) > 0)
 			;
+		printf("Vaue = %d\n", status);
 		parser_free(commands);
 	}
 }

@@ -24,13 +24,14 @@ Cosas para ti:
 Cosas para mí:
 
 *****************
-->	Pipes +  redirección se complica
-->	Realmente se me complica todo lo que es con redirecciones (<, >, <<, >>)
+🎯	Pipes +  redirección se complica
+🎯	Realmente se me complica todo lo que es con redirecciones (<, >, <<, >>)
 *****************
 
 
 🎯 Terminal las signals, me falta la de Ctrl+D, que tengo que investigar un poco, ahora mismo hace segfault
 	--> Tengo que si la linea esta vacía cerrar el stdin y cerrar el programa
+
 -> Terminar de hacer pruebas a los builtins, pero no puedo porque tu struct pasa de la mayoria
 	--> Pensar en pruebas, esto mejor hacerlo con Mario
 
@@ -41,5 +42,5 @@ Cosas para mí:
 	--> Qué es lo que tiene que hacer el historial?? (Pregunta importante Jaja)
 
 -> Mirar cuando no existe la variable
--> Gestión del error: devolver lo que haya devuelto el último programa ejecutado
+🎯 Gestión del error: devolver lo que haya devuelto el último programa ejecutado
 	- Guardarlo en la variable $?

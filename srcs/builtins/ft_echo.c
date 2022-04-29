@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:16:03 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:04:19 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static bool	check_linebreak_flag(char *param)
 	size_t	i;
 
 	i = 0;
+	if (!param)
+		return (false);
 	if (is_correct_flag(*param, *(param + 1)))
 	{
 		while (*(param + i + 1) == 'n')
