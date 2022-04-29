@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 05:20:46 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/29 05:28:51 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	*process_redirect(char *cmd, int *fdin, int *fdout)
 	else if (*cmd == '<')
 		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK, 0644);
 	free((char *)filename);
-	return (endp);
+	return (endp - 1);
 }
 
 void	command_redirections(t_command *cmd)
