@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 21:21:10 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 22:07:51 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	handler(int sig)
 	{
 		printf("demasiadas veces");
 		write(1, "\nminiSH$ ", 9);
-		//rl_on_new_line();
+		rl_on_new_line();
 		//rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
