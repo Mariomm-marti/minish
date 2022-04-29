@@ -6,10 +6,11 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/30 00:34:00 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 00:36:46 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
