@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 19:11:00 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 00:36:29 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 11:42:51 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	handler(int sig)
 		rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
-		write(1, "", 0);
+	{
+		write(1, "\33[2K", 4);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 	utils_update_var("?", "130");
 }
