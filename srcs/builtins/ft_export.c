@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 11:47:16 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 11:56:42 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-#include <stdio.h> ////
 
 static void	print_content(char *content, int fdout)
 {
