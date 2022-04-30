@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:38:24 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 22:02:07 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/30 10:16:19 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ bool	utils_check_pipeline(t_command *cmds)
 {
 	while (cmds)
 	{
-		if ((!cmds->cmd && seek_builtin(cmds->argv[0]) == -1)
-			|| ft_split_count(cmds->argv) == 0)
+		if (cmds->argc == 0
+			|| (!cmds->cmd && seek_builtin(cmds->argv[0]) == -1))
 			return (false);
 		cmds = cmds->next;
 	}
