@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 00:30:07 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:55:32 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include <stdio.h>
 static char	what_action_var(char *var, char *content)
 {
 	if (getenv(var))
@@ -78,7 +77,7 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
 		{
 			if (chd == CHANGE)
-				*(newenv + i) = utils_generate_var(var, content);
+				*(newenv + i++) = utils_generate_var(var, content);
 			else if (chd == DELETE)
 				dlte = true;
 		}

@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 18:58:20 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 00:26:47 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:55:09 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <utils.h>
 #include <stdlib.h>
 
-#include <stdio.h>
 ssize_t	ft_unset(const char **argv, int fdin, int fdout)
 {
 	extern char	**environ;

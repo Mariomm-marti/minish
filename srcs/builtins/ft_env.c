@@ -6,16 +6,24 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:13:48 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 06:35:53 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:53:37 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <libft.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-#include <stdio.h>////
-
+static bool	jump_dollar(char *var, size_t *j)
+{
+	if (ft_strncmp(var, "?", 1) == 0)
+	{
+		(*j)++;
+		return (true);
+	}
+	return (false);
+}
 
 ssize_t	ft_env(char const **argv, int fdin, int fdout)
 {
@@ -29,11 +37,8 @@ ssize_t	ft_env(char const **argv, int fdin, int fdout)
 	j = 0;
 	while (*(environ + j))
 	{
-		if (ft_strncmp(*(environ + j), "?", 1) == 0)
-		{
-			j++;
+		if (jump_dollar(*(environ + j), &j))
 			continue ;
-		}
 		i = -1;
 		while (*(*environ + ++i))
 		{
