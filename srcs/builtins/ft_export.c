@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 21:18:24 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 11:47:16 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <libft.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include <stdio.h> ////
 
@@ -110,6 +111,8 @@ ssize_t	ft_export(const char **argv, int fdin, int fdout)
 		if (!separete_params(*(params + i), &var, &content))
 			return (1);
 		utils_update_var(var, content);
+		free(var);
+		free(content);
 		i++;
 	}
 	return (0);
