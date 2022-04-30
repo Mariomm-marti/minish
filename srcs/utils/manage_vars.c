@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 11:46:48 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:29:26 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ static char	*utils_generate_var(char *var, char *newcont)
 static void	update_action(char **newenv, char *var, char *content, char chd)
 {
 	extern char	**environ;
-	size_t		env_len;
 	size_t		i;
 	bool		dlte;
 
 	dlte = false;
-	env_len = environ_len();
-	i = 0;
-	while (i < env_len)
+	i = -1;
+	while (++i < environ_len())
 	{
 		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
 		{
@@ -84,14 +82,14 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 				free(*(environ + i - 1 + dlte));
 				continue ;
 			}
-			else if (chd == DELETE)
+			if (chd == DELETE)
 				dlte = true;
 		}
 		*(newenv + i) = *(environ + i + dlte);
-		i++;
 	}
 	if (chd == CREATE)
 		*(newenv + i) = utils_generate_var(var, content);
+	free(environ);
 	environ = newenv;
 }
 
