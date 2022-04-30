@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 11:46:48 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 12:15:38 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 	}
 	if (chd == CREATE)
 		*(newenv + i) = utils_generate_var(var, content);
+	free(environ);
 	environ = newenv;
 }
 
 void	utils_update_var(char *var, char *content)
 {
-	char	**newenv;
-	char	chd;
-	size_t	env_len;
+	static int	first = 1;
+	char		**newenv;
+	char		chd;
+	size_t		env_len;
 
 	chd = what_action_var(var, content);
 	env_len = environ_len();
@@ -108,4 +110,5 @@ void	utils_update_var(char *var, char *content)
 	if (!newenv)
 		return ;
 	update_action(newenv, var, content, chd);
+	first = 0;
 }
