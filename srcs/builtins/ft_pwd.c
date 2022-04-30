@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 19:48:16 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 20:31:53 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/30 10:53:45 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
 
 	(void)fdin;
 	param = *(argv + 1);
-	if (!opendir(param))
+	if (param && *param == '-' && *(param + 1) != '\0')
+		return (1);
+	buf = getcwd(NULL, 0);
+	if (!opendir(buf))
 	{
 		printf("directory cannot be accessed\n");
 		return (1);
 	}
-	if (param && *param == '-' && *(param + 1) != '\0')
-		return (1);
-	buf = getcwd(NULL, 0);
 	write(fdout, buf, ft_strlen(buf));
 	write(fdout, "\n", 1);
 	return (0);
