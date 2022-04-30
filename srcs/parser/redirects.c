@@ -6,10 +6,11 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 22:28:23 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/04/30 10:18:50 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <libft.h>
 #include <command.h>
