@@ -66,19 +66,19 @@ static char	*process_redirect(char *cmd, int *fdin, int *fdout)
 
 	if (*cmd == '>' && *(cmd + 1) == '>')
 		*fdout = open(filename,
-				O_WRONLY | O_CREAT | O_SYMLINK | O_APPEND, 0644);
+				O_WRONLY | O_CREAT | O_APPEND, 0644);	///////////////// O_SYMLINK ///////
 	else if (*cmd == '>')
-		*fdout = open(filename, O_WRONLY | O_CREAT | O_SYMLINK | O_TRUNC, 0644);
+		*fdout = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644); /////////////////////
 	else if (*cmd == '<' && *(cmd + 1) == '<')
 	{
 		*fdin = open("/tmp/_tmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
 				0644);
 		do_heredoc(*fdin, filename);
 		close(*fdin);
-		*fdin = open("/tmp/_tmp", O_RDONLY | O_CREAT | O_SYMLINK, 0644);
+		*fdin = open("/tmp/_tmp", O_RDONLY | O_CREAT , 0644); /////////////////////////////////////////
 	}
 	else if (*cmd == '<')
-		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK, 0644);
+		*fdin = open(filename, O_RDONLY | O_CREAT , 0644);	//////////////////////////
 	free((char *)filename);
 	return (endp - 1);
 }

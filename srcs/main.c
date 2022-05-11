@@ -18,6 +18,8 @@
 #include <utils.h>
 #include <command.h>
 #include <libft.h>
+#include <sys/wait.h>
+#include <signal.h>
 #include <signals.h>
 
 static bool	main_preprocess(char *line, t_command **cmds)

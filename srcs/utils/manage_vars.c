@@ -68,18 +68,22 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 {
 	extern char	**environ;
 	size_t		i;
+	size_t		enlen;
 	bool		dlte;
 
 	dlte = false;
+	enlen = environ_len();
 	i = -1;
-	while (++i < environ_len())
+	while (++i < enlen)
 	{
 		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
 		{
 			if (chd == CHANGE)
 			{
-				*(newenv + i++) = utils_generate_var(var, content);
-				free(*(environ + i - 1 + dlte));
+				*(newenv + i) = utils_generate_var(var, content);
+				printf("|%s|\n", *(environ + i - 1 + dlte));
+				printf("Llegmos a salvo\n");
+				free(*(environ + i + dlte));
 				continue ;
 			}
 			if (chd == DELETE)
