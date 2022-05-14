@@ -29,7 +29,7 @@ ssize_t	execute(t_command *cmd, int p[2], char last);
 **	Create a process for each pipe and assign fd's (input and output) for
 **	each command.
 */
-void	exec_command(t_command *cmd);
+size_t	exec_command(t_command *cmd);
 
 int		seek_builtin(char *cmd);
 

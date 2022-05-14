@@ -63,7 +63,7 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 		return (execve(cmd->cmd, cmd->argv, environ));
 }
 
-void	exec_command(t_command *cmd)
+size_t	exec_command(t_command *cmd)
 {
 	int			p[2];
 	t_command	*cmd1;
@@ -83,5 +83,5 @@ void	exec_command(t_command *cmd)
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	execute(cmd1, p, 1);
+	return (execute(cmd1, p, 1));
 }

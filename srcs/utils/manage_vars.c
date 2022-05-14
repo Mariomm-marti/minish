@@ -30,17 +30,6 @@ static char	what_action_var(char *var, char *content)
 	return (CREATE);
 }
 
-static size_t	environ_len(void)
-{
-	extern char	**environ;
-	size_t		env_len;
-
-	env_len = 0;
-	while (*(environ + env_len))
-		env_len++;
-	return (env_len);
-}
-
 static char	*utils_generate_var(char *var, char *newcont)
 {
 	char	*newvar;
@@ -81,8 +70,6 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 			if (chd == CHANGE)
 			{
 				*(newenv + i) = utils_generate_var(var, content);
-				printf("|%s|\n", *(environ + i - 1 + dlte));
-				printf("Llegmos a salvo\n");
 				free(*(environ + i + dlte));
 				continue ;
 			}

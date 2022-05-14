@@ -54,26 +54,28 @@ int	main(void)
 {
 	t_command	*commands;
 	char		*line;
-	int			status;
+	int		status;
 
+	environ_to_heap();
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 	commands = NULL;
 	while (true)
 	{
 		line = readline("miniSH$ ");
-		if (!line)
+		if (EOF && !line)
 			break ;
 		if (main_preprocess(line, &commands))
 			continue ;
-		exec_command(commands);
+		status = exec_command(commands);
 		while (wait(&status) > 0)
 			;
-		if (status > 255)
+		while (status > 255)
 			status = status - 255;
 		line = ft_itoa(status);
 		utils_update_var("?", line);
 		free(line);
 		parser_free(commands);
 	}
+	free_environ();
 }

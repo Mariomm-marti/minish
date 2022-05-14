@@ -54,4 +54,22 @@ void	utils_update_var(char *var, char *content);
 
 bool	is_valid_identifier(char *var);
 
+/*
+**	Does a copy of the environment variables into the heap memory
+*/
+
+void	environ_to_heap(void);
+
+/*
+**	Return the number of variables on extern environ
+*/
+
+size_t	environ_len();
+
+/*
+**	Environ memory free
+*/
+
+void	free_environ(void);
+
 #endif

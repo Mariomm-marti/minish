@@ -13,12 +13,13 @@
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <utils.h>
 
 ssize_t	ft_exit(char const **argv, int fdin, int fdout)
 {
 	(void)fdin;
 	(void)fdout;
+	free_environ();
 	exit(ft_atoi(*(argv + 1)));
 	return (0);
 }

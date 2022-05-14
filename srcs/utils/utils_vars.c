@@ -31,3 +31,49 @@ bool	is_valid_identifier(char *var)
 	}
 	return (true);
 }
+
+size_t   environ_len(void)
+{
+	extern char     **environ;
+	size_t          env_len;
+	
+	env_len = 0;
+	while (*(environ + env_len))
+		env_len++;
+	return (env_len);
+}
+
+void	environ_to_heap(void)
+{
+	size_t          envlen; 
+	size_t          i;
+	char            **newenv;
+	extern char     **environ;
+	
+	envlen = environ_len();
+	newenv = (char **)malloc(sizeof(char *) * (envlen + 1));
+	i = 0;
+	while (i < envlen)
+	{
+		*(newenv + i) = ft_strdup(*(environ + i));
+		i++;
+	}
+	*(newenv + i) = NULL;
+	environ = newenv;
+}
+
+void	free_environ(void)
+{
+	size_t		envlen;
+	size_t		i;
+	extern char	**environ;
+
+	envlen = environ_len();
+	i = 0;
+	while (i < envlen)
+	{
+		free(*(environ + i));
+		i++;
+	}
+	free(environ);
+}
