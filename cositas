@@ -76,3 +76,9 @@ Cosas para mí:
 ->	main
 
 ->	pruebas random
+
+->	cat | cat | ls
+
+-> ls > lol | wc -l (problemas con los fd)
+
+-> Error Msg when error code != 0
