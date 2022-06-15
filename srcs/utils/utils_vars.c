@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/15 21:18:51 by test             ###   ########.fr       */
+/*   Updated: 2022/06/15 23:20:34 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ void	free_environ(void)
 {
 	size_t		envlen;
 	size_t		i;
-	extern char	**environ;
 
 	envlen = environ_len();
 	i = 0;
 	while (i < envlen)
 	{
-		free(*(environ + i));
+		free(*(environ_heap + i));
 		i++;
 	}
-	free(environ);
+	free(environ_heap);
 }
