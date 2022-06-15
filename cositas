@@ -81,4 +81,4 @@ Cosas para mí:
 
 -> ls > lol | wc -l (problemas con los fd)
 
--> Error Msg when error code != 0
+ Error Msg when error code != 0
