@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2022/06/13 19:57:33 by acaravan         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:34:19 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	environ_to_heap(void);
 **	Return the number of variables on extern environ
 */
 
-size_t	environ_len();
+size_t	environ_len(void);
 
 /*
 **	Environ memory free
