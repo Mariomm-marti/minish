@@ -60,7 +60,7 @@ Cosas para mí:
 🎯	export =123
 
 ->	||
-
+ 
 ->	""
 
 🎯	rutas absolutas no existentes
@@ -78,7 +78,17 @@ Cosas para mí:
 ->	pruebas random
 
 ->	cat | cat | ls
+->	top | head -n 4 (top se queda abierto, cerrar procesos cuando el ultimo ya ha terminado)
 
--> ls > lol | wc -l (problemas con los fd)
+🎯	ls > lol | wc -l (problemas con los fd)
 
- Error Msg when error code != 0
+-> El cd en un proceso hijo no edita el environ en el proceso padre ( > Como saber si esty dentro de un proceso)
+
+->	Exit sin parámetro, devuelve el codigo de salida del último comando ejecutado -> Necesito saber el código de salida dentro del exit
+
+->	Hacer free de todo (the current command) en el exit (> Necesito la estructura del comando dentro del exit)
+
+->	Repasar todo el manage vars
+
+
+🎯	 Error Msg when error code != 0

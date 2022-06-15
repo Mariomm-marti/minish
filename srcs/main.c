@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/30 12:16:57 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/15 20:36:20 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 {
 	t_command	*commands;
 	char		*line;
-	int		status;
+	int			status;
 
 	environ_to_heap();
 	signal(SIGINT, handler);
@@ -75,6 +75,8 @@ int	main(void)
 		line = ft_itoa(status);
 		utils_update_var("?", line);
 		free(line);
+		if (status != 0)
+			printf("Command Error");
 		parser_free(commands);
 	}
 	free_environ();

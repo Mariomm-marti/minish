@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2022/06/15 19:34:19 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:45:32 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <stdbool.h>
 # include <command.h>
 # include <sys/types.h>
+
+/*
+**	GLOBAL VARIABLE
+*/
+char	**environ_heap;
 
 typedef bool	(*t_validator)(char const);
 

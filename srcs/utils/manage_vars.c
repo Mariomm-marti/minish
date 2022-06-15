@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 12:29:26 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:45:53 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static char	*utils_generate_var(char *var, char *newcont)
 
 static void	update_action(char **newenv, char *var, char *content, char chd)
 {
-	extern char	**environ;
 	size_t		i;
 	size_t		enlen;
 	bool		dlte;
@@ -65,23 +64,26 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 	i = -1;
 	while (++i < enlen)
 	{
-		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
+		if (!ft_strncmp(*(environ_heap + i), var, ft_strlen(var)))
 		{
 			if (chd == CHANGE)
 			{
 				*(newenv + i) = utils_generate_var(var, content);
-				free(*(environ + i + dlte));
+				free(*(environ_heap + i + dlte));
 				continue ;
 			}
 			if (chd == DELETE)
+			{
+				free(*(environ_heap + i + dlte));
 				dlte = true;
+			}
 		}
-		*(newenv + i) = *(environ + i + dlte);
+		*(newenv + i) = *(environ_heap + i + dlte);
 	}
 	if (chd == CREATE)
 		*(newenv + i) = utils_generate_var(var, content);
-	free(environ);
-	environ = newenv;
+	free(environ_heap);
+	environ_heap = newenv;
 }
 
 void	utils_update_var(char *var, char *content)

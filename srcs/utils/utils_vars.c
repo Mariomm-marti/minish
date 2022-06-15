@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 06:36:26 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/15 21:18:51 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ bool	is_valid_identifier(char *var)
 
 size_t   environ_len(void)
 {
-	extern char     **environ;
 	size_t          env_len;
 	
 	env_len = 0;
-	while (*(environ + env_len))
+	while (*(newenv + env_len))
 		env_len++;
 	return (env_len);
 }
@@ -47,10 +46,11 @@ void	environ_to_heap(void)
 {
 	size_t          envlen; 
 	size_t          i;
-	char            **newenv;
 	extern char     **environ;
 	
-	envlen = environ_len();
+	envlen = 0;
+	while (*(environ + envlen))
+		envlen++;
 	newenv = (char **)malloc(sizeof(char *) * (envlen + 1));
 	i = 0;
 	while (i < envlen)
@@ -59,7 +59,6 @@ void	environ_to_heap(void)
 		i++;
 	}
 	*(newenv + i) = NULL;
-	environ = newenv;
 }
 
 void	free_environ(void)

@@ -6,12 +6,13 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 06:13:35 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:09:47 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <command.h>
 #include <piper.h>
+#include <utils.h>
 #include <unistd.h>
 #include <builtins.h>
 #include <libft.h>
@@ -38,7 +39,6 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 {
 	pid_t				pid;
 	int					blt;
-	extern char			**environ;
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};
 
@@ -60,7 +60,7 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 	if (blt >= 0)
 		return (table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout));
 	else
-		return (execve(cmd->cmd, cmd->argv, environ));
+		return (execve(cmd->cmd, cmd->argv, environ_heap));
 }
 
 size_t	exec_command(t_command *cmd)
