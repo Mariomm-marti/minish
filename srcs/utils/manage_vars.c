@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/16 23:44:17 by test             ###   ########.fr       */
+/*   Updated: 2022/06/17 00:54:23 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <utils.h>
 #include <libft.h>
 #include <stdbool.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 
 static char	what_action_var(char *var, char *content)
 {
 	if (get_env(var))
 	{
 		if (!content)
-			return (DELETE);
+			return (DE);
 		else
-			return (CHANGE);
+			return (CH);
 	}
-	return (CREATE);
+	return (CR);
 }
 
 static char	*utils_generate_var(char *var, char *newcont)
@@ -51,7 +51,7 @@ static char	*utils_generate_var(char *var, char *newcont)
 	return (newvar);
 }
 
-static void	update_action(char **newenv, char *var, char *content, char chd)
+static void	update_action(char **newenv, char *v, char *content, char c)
 {
 	size_t		i;
 	size_t		enlen;
@@ -62,26 +62,22 @@ static void	update_action(char **newenv, char *var, char *content, char chd)
 	i = -1;
 	while (++i < enlen)
 	{
-		if (!ft_strncmp(*(environ_heap + i), var, ft_strlen(var)))
+		if (!ft_strcmp(*(g_environ_heap + i), v) && c == CH)
 		{
-			if (chd == CHANGE)
-			{
-				*(newenv + i) = utils_generate_var(var, content);
-				free(*(environ_heap + i + dlte));
-				continue ;
-			}
-			if (chd == DELETE)
-			{
-				free(*(environ_heap + i + dlte));
-				dlte = true;
-			}
+			*(newenv + i) = utils_generate_var(v, content);
+			free(*(g_environ_heap + i + dlte));
 		}
-		*(newenv + i) = *(environ_heap + i + dlte);
+		else if (!ft_strcmp(*(g_environ_heap + i), v) && c == DE)
+		{
+			free(*(g_environ_heap + i + dlte));
+			dlte = true;
+		}
+		*(newenv + i) = *(g_environ_heap + i + dlte);
 	}
-	if (chd == CREATE)
-		*(newenv + i) = utils_generate_var(var, content);
-	free(environ_heap);
-	environ_heap = newenv;
+	if (c == CR)
+		*(newenv + i) = utils_generate_var(v, content);
+	free(g_environ_heap);
+	g_environ_heap = newenv;
 }
 
 void	utils_update_var(char *var, char *content)
