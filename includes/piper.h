@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 19:53:34 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 03:09:45 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:54:31 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <sys/types.h>
 # include <command.h>
 
+typedef struct s_tops {
+	pid_t	pds_list[200];
+	size_t	index_pd;
+}				t_tops;
+
+t_tops	pds;
 /*
 **	EXEC COMMAND
 **	Execute the commads with their arguments and to alias the fd's as 0 or 1

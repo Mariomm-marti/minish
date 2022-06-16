@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/16 19:15:29 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 21:14:02 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 	if (blt < 0)
 	{
 		pid = fork();
+		pds.pds_list[(pds.index_pd)++] = pid;
 		if (pid != 0)
 			return (0);
 		if (last == 0)
@@ -73,8 +74,7 @@ size_t	exec_command(t_command *cmd)
 	cmd2 = cmd->next;
 	while (cmd2)
 	{
-		if (cmd2->next)
-			pipe(p);
+		pipe(p);
 		if (cmd1->fdout == 1)
 			cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
