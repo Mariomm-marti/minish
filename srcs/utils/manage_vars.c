@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/16 21:47:51 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 23:44:17 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <libft.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
-#include <stdio.h>
 
 static char	what_action_var(char *var, char *content)
 {
