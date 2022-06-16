@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/15 23:09:47 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 19:15:29 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ size_t	exec_command(t_command *cmd)
 	cmd2 = cmd->next;
 	while (cmd2)
 	{
-		pipe(p);
-		cmd1->fdout = p[1];
+		if (cmd2->next)
+			pipe(p);
+		if (cmd1->fdout == 1)
+			cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
 		execute(cmd1, p, 0);
 		close(p[1]);

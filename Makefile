@@ -6,7 +6,7 @@
 #    By: vim <vim@42urduliz.com>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 00:39:14 by vim               #+#    #+#              #
-#    Updated: 2022/06/16 16:21:27 by mmartin-         ###   ########.fr        #
+#    Updated: 2022/06/16 19:10:29 by test             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ MINISH_TSRCS	= srcs/builtins/ft_env.c \
 MINISH_OBJS		= $(MINISH_SRCS:.c=.o)
 MINISH_TOBJS	= $(MINISH_TSRCS:.c=.o)
 
-MINISH_NAME		= miniSH
+MINISH_NAME		= minishell
 
 RL_INC			= $(HOME)/.brew/opt/readline/include
 RL_LIB			= $(HOME)/.brew/opt/readline/lib

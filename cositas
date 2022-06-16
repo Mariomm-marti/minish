@@ -78,7 +78,7 @@ Cosas para mí:
 ->	pruebas random
 
 ->	cat | cat | ls
-->	top | head -n 4 (top se queda abierto, cerrar procesos cuando el ultimo ya ha terminado)
+->	top | head -n 4 (top se queda abierto, cerrar procesos cuando el ultimo ya ha terminado)  [Trichungo]
 
 🎯	ls > lol | wc -l (problemas con los fd)
 
@@ -88,7 +88,7 @@ Cosas para mí:
 
 ->	Hacer free de todo (the current command) en el exit (> Necesito la estructura del comando dentro del exit)
 
-->	Repasar todo el manage vars
+//	Repasar todo el manage vars
 
 
 🎯	 Error Msg when error code != 0
