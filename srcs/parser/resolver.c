@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 01:50:41 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 21:18:10 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:34:48 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*resolve_path(char const *str)
 	size_t	counter;
 	bool	found;
 
-	folders = ft_split(getenv("PATH"), ':');
+	folders = ft_split(get_env("PATH"), ':');
 	if (!folders)
 		return (NULL);
 	counter = 0;

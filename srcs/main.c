@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/06/15 23:20:05 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 16:41:41 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ int	main(void)
 		line = ft_itoa(status);
 		utils_update_var("?", line);
 		free(line);
-		if (status != 0)
-			printf("Command Error");
 		parser_free(commands);
 	}
 	free_environ();

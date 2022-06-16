@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/15 22:45:53 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 16:34:33 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static char	what_action_var(char *var, char *content)
 {
-	if (getenv(var))
+	if (get_env(var))
 	{
 		if (!content)
 			return (DELETE);

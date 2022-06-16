@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/25 18:54:08 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:34:21 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static ssize_t	which_action(char *path, char *home, char *previous_dir,
 {
 	if (!path)
 	{
-		home = getenv("HOME");
+		home = get_env("HOME");
 		if (!home)
 			return (1);
 		chdir(home);
@@ -38,7 +38,7 @@ static ssize_t	which_action(char *path, char *home, char *previous_dir,
 	}
 	if (!ft_strcmp(path, "-"))
 	{
-		path = getenv("OLDPWD");
+		path = get_env("OLDPWD");
 		if (!path)
 			return (-1);
 		printf("%s\n", path);
@@ -67,7 +67,7 @@ ssize_t	ft_cd(char const **argv, int fdin, int fdout)
 		path = NULL;
 	else
 		path = ft_strdup(*(argv + 1));
-	previous_dir = getenv("PWD");
+	previous_dir = get_env("PWD");
 	ret = which_action(path, home, previous_dir, actual_dir);
 	free(path);
 	return (ret);
