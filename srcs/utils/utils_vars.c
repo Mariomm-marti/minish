@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:21:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/15 23:20:34 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 16:36:10 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t   environ_len(void)
 	size_t          env_len;
 	
 	env_len = 0;
-	while (*(newenv + env_len))
+	while (*(environ_heap + env_len))
 		env_len++;
 	return (env_len);
 }
@@ -51,14 +51,26 @@ void	environ_to_heap(void)
 	envlen = 0;
 	while (*(environ + envlen))
 		envlen++;
-	newenv = (char **)malloc(sizeof(char *) * (envlen + 1));
+	environ_heap = (char **)malloc(sizeof(char *) * (envlen + 1));
 	i = 0;
 	while (i < envlen)
 	{
-		*(newenv + i) = ft_strdup(*(environ + i));
+		*(environ_heap + i) = ft_strdup(*(environ + i));
 		i++;
 	}
-	*(newenv + i) = NULL;
+	*(environ_heap + i) = NULL;
+}
+
+char	*get_env(char const *name)
+{
+	char	**environ;
+
+	environ = environ_heap;
+	while (*environ && ft_strcmp(*environ, name) != '=')
+		environ++;
+	if (!*environ)
+		return (NULL);
+	return (ft_strchr(*environ, '=') + 1);
 }
 
 void	free_environ(void)

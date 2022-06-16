@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:00 by vim               #+#    #+#             */
-/*   Updated: 2022/06/15 22:45:32 by test             ###   ########.fr       */
+/*   Updated: 2022/06/16 16:35:40 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,10 @@ size_t	environ_len(void);
 */
 
 void	free_environ(void);
+
+/*
+** Getenv local implementation
+*/
+char	*get_env(char const *name);
 
 #endif
