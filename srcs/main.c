@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/06/17 00:55:23 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/17 01:01:32 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,24 @@ static bool	main_preprocess(char *line, t_command **cmds)
 	return (false);
 }
 
-static int	main_execute(t_command *commands, t_tops *pds)
+static int main_execute(t_command *commands)
 {
-	int			final;
-	int			status;
+	int		status;
 	size_t		i;
+	int		final;
+	t_tops	pds;
 
-	status = exec_command(commands, pds);
-	printf("status: %d\n", status);
-	final = 0;
-	if (waitpid((pds->pds_list)[pds->index_pd - 1], &status, 0) > 0)
+	pds.index_pd = 0;
+	status = exec_command(commands, &pds);
+	if (waitpid((pds.pds_list)[pds.index_pd - 1], &status, 0) > 0)
 	{
 		i = -1;
-		if (kill((pds->pds_list)[pds->index_pd - 1], SIGKILL))
-			while (++i < pds->index_pd)
-				kill((pds->pds_list)[i], SIGKILL);
+		if (kill((pds.pds_list)[pds.index_pd - 1], SIGKILL))
+			while (++i < pds.index_pd)
+				kill((pds.pds_list)[i], SIGKILL);
 	}
 	while (wait(&final) > 0)
 		;
-	pds->index_pd = 0;
 	while (status > 255)
 		status = status - 255;
 	return (status);
@@ -87,14 +86,12 @@ int	main(void)
 	commands = NULL;
 	while (true)
 	{
-		pds.index_pd = 0;
 		line = readline("miniSH$ ");
 		if (EOF && !line)
 			break ;
 		if (main_preprocess(line, &commands))
 			continue ;
-		status = main_execute(commands, &pds);
-		pds.index_pd = 0;
+		status = main_execute(commands);
 		line = ft_itoa(status);
 		utils_update_var("?", line);
 		free(line);
