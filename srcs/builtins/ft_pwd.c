@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 19:48:16 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/14 21:49:19 by vim              ###   ########.fr       */
+/*   Updated: 2022/06/17 18:53:14 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ssize_t	ft_pwd(const char **argv, int fdin, int fdout)
 	if (access(buf, F_OK))
 	{
 		free(buf);
-		printf("directory cannot be accessed\n");
+		printf("You are in The Nothingness\n");
 		return (1);
 	}
 	write(fdout, buf, ft_strlen(buf));
