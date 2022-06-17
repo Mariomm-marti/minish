@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/17 18:15:04 by test             ###   ########.fr       */
+/*   Updated: 2022/06/17 18:55:50 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	update_action(char **newenv, char *v, char *content, char c)
 	if (c == CR)
 		*(newenv + i) = utils_generate_var(v, content);
 	free(g_environ_heap);
-	g_environ_heap = newenv;
 }
 
 void	utils_update_var(char *var, char *content)
@@ -94,4 +93,5 @@ void	utils_update_var(char *var, char *content)
 	if (!newenv)
 		return ;
 	update_action(newenv, var, content, chd);
+	g_environ_heap = newenv;
 }

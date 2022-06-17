@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/06/17 01:03:39 by test             ###   ########.fr       */
+/*   Updated: 2022/06/17 18:56:19 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ static bool	main_preprocess(char *line, t_command **cmds)
 	return (false);
 }
 
-static int main_execute(t_command *commands)
+static int	main_execute(t_command *commands)
 {
 	int		status;
-	size_t		i;
+	size_t	i;
 	int		final;
 	t_tops	pds;
 
