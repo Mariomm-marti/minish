@@ -6,10 +6,11 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:17:57 by vim               #+#    #+#             */
-/*   Updated: 2022/04/02 21:06:11 by vim              ###   ########.fr       */
+/*   Updated: 2022/06/15 19:33:57 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <libft.h>
 #include <command.h>
@@ -29,7 +30,7 @@ static char	*get_filename(char *cmd, char **endp)
 		cmd++;
 	while (utils_validator_isspace(*cmd))
 		cmd++;
-	while (!(lock == 0 && utils_validator_isspace(*cmd)) && *cmd)
+	while (*cmd && !(lock == 0 && utils_validator_isspace(*cmd)))
 	{
 		if (lock == *cmd)
 			lock = 0;
@@ -48,7 +49,7 @@ static void	do_heredoc(int const fd, char const *end)
 	char	*line;
 
 	line = readline(">");
-	while (ft_strcmp(line, end))
+	while (line && ft_strcmp(line, end))
 	{
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
@@ -65,18 +66,21 @@ static char	*process_redirect(char *cmd, int *fdin, int *fdout)
 
 	if (*cmd == '>' && *(cmd + 1) == '>')
 		*fdout = open(filename,
-				O_WRONLY | O_CREAT | O_SYMLINK | O_APPEND, 0644);
+				O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else if (*cmd == '>')
-		*fdout = open(filename, O_WRONLY | O_CREAT | O_SYMLINK | O_TRUNC, 0644);
+		*fdout = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (*cmd == '<' && *(cmd + 1) == '<')
 	{
-		*fdin = open("/tmp/_tmp", O_RDWR | O_CREAT | O_TRUNC | O_APPEND, 0644);
+		*fdin = open("/tmp/_tmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND,
+				0644);
 		do_heredoc(*fdin, filename);
+		close(*fdin);
+		*fdin = open("/tmp/_tmp", O_RDONLY | O_CREAT, 0644);
 	}
 	else if (*cmd == '<')
-		*fdin = open(filename, O_RDONLY | O_CREAT | O_SYMLINK | O_TRUNC, 0644);
+		*fdin = open(filename, O_RDONLY | O_CREAT, 0644);
 	free((char *)filename);
-	return (endp);
+	return (endp - 1);
 }
 
 void	command_redirections(t_command *cmd)

@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:15:08 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 03:12:17 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/24 14:54:48 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	parser_free(t_command *commands)
 	if (!commands)
 		return ;
 	parser_free(commands->next);
-	free(commands->cmd);
+	if (commands->cmd)
+		free(commands->cmd);
 	ft_split_free(commands->argv);
 	if (commands->fdin != 0)
 		close(commands->fdin);
-	if (commands->fdout != 0)
+	if (commands->fdout != 1)
 		close(commands->fdout);
 	free(commands);
 }

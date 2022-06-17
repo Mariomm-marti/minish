@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:53:55 by mortega-          #+#    #+#             */
-/*   Updated: 2022/01/15 16:59:28 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/04/29 03:32:21 by mortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static bool	check_linebreak_flag(char *param)
 	size_t	i;
 
 	i = 0;
+	if (!param)
+		return (false);
 	if (is_correct_flag(*param, *(param + 1)))
 	{
 		while (*(param + i + 1) == 'n')
@@ -42,8 +44,9 @@ ssize_t	ft_echo(const char **argv, int fdin, int fdout)
 	bool	jump;
 	char	**params;
 
-	params = (char  **)(argv + 1);
-	jump = check_linebreak_flag(*param);
+	(void)fdin;
+	params = (char **)(argv + 1);
+	jump = check_linebreak_flag(*params);
 	if (jump)
 		params++;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:15:06 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 00:49:56 by vim              ###   ########.fr       */
+/*   Updated: 2022/04/24 15:55:13 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <utils.h>
 #include <libft.h>
 
-char	**push_argument(char **argv, int *argc, char *str)
+static char	**push_argument(char **argv, int *argc, char *str)
 {
 	char	**nargv;
 	int		count;

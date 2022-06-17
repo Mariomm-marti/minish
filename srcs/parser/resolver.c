@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 01:50:41 by vim               #+#    #+#             */
-/*   Updated: 2022/04/03 03:23:27 by vim              ###   ########.fr       */
+/*   Updated: 2022/06/16 16:34:48 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static char	*resolve_path(char const *str)
 	size_t	counter;
 	bool	found;
 
-	folders = ft_split(getenv("PATH"), ':');
+	folders = ft_split(get_env("PATH"), ':');
 	if (!folders)
-		return (ft_strdup(""));
+		return (NULL);
 	counter = 0;
 	found = false;
 	while (*(folders + counter))
@@ -66,19 +66,12 @@ void	command_resolve_path(t_command *cmd)
 
 	cmdstr = *(cmd->argv);
 	free(cmd->cmd);
-	if (*cmdstr == '/')
-	{
-		cmd->cmd = cmdstr;
+	cmd->cmd = NULL;
+	if (!cmdstr || !ft_strcmp(cmdstr, ".") || !ft_strcmp(cmdstr, ".."))
 		return ;
-	}
-	if (*cmdstr == '.' && *(cmdstr + 1) == '.' && *(cmdstr + 2) == '/')
+	if (access(cmdstr, X_OK) == 0)
 	{
-		cmd->cmd = cmdstr;
-		return ;
-	}
-	if (*cmdstr == '.' && *(cmdstr + 1) == '/')
-	{
-		cmd->cmd = cmdstr;
+		cmd->cmd = ft_strdup(cmdstr);
 		return ;
 	}
 	cmd->cmd = resolve_path(cmdstr);
