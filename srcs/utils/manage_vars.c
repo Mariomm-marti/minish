@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/17 00:59:26 by test             ###   ########.fr       */
+/*   Updated: 2022/06/17 18:15:04 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ static void	update_action(char **newenv, char *v, char *content, char c)
 	i = -1;
 	while (++i < enlen)
 	{
-		if (!ft_strcmp(*(g_environ_heap + i), v) && c == CH)
+		if (!ft_strncmp(*(g_environ_heap + i), v, ft_strlen(v)) && c == CH)
 		{
 			*(newenv + i) = utils_generate_var(v, content);
 			free(*(g_environ_heap + i + dlte));
+			continue ;
 		}
-		else if (!ft_strcmp(*(g_environ_heap + i), v) && c == DE)
+		else if (!ft_strncmp(*(g_environ_heap + i), v, ft_strlen(v)) && c == DE)
 		{
 			free(*(g_environ_heap + i + dlte));
 			dlte = true;

@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/06/17 01:01:32 by test             ###   ########.fr       */
+/*   Updated: 2022/06/17 01:03:39 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static int main_execute(t_command *commands)
 int	main(void)
 {
 	t_command	*commands;
-	t_tops		pds;
 	char		*line;
 	int			status;
 

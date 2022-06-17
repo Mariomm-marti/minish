@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 20:49:50 by mortega-          #+#    #+#             */
-/*   Updated: 2022/06/16 16:34:21 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:27:42 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@
 
 static int	change_pwd(char *previous_dir, char *new_pwd)
 {
-	utils_update_var("OLDPWD", previous_dir);
-	utils_update_var("PWD", new_pwd);
+	if (get_env("OLDPWD"))
+		utils_update_var("OLDPWD", previous_dir);
+	if (get_env("PWD"))
+		utils_update_var("PWD", new_pwd);
+	else
+		utils_update_var("OLDPWD", "");
 	return (0);
 }
 
@@ -46,7 +50,9 @@ static ssize_t	which_action(char *path, char *home, char *previous_dir,
 	if (!chdir(path))
 	{
 		actual_dir = getcwd(NULL, 0);
-		return (change_pwd(previous_dir, actual_dir));
+		change_pwd(previous_dir, actual_dir);
+		free(actual_dir);
+		return (0);
 	}
 	return (1);
 }
