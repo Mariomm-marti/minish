@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:36:27 by vim               #+#    #+#             */
-/*   Updated: 2022/04/30 12:16:57 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:56:19 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <utils.h>
 #include <command.h>
 #include <libft.h>
+#include <sys/wait.h>
+#include <signal.h>
 #include <signals.h>
 
 static bool	main_preprocess(char *line, t_command **cmds)
@@ -48,30 +50,51 @@ static bool	main_preprocess(char *line, t_command **cmds)
 	return (false);
 }
 
+static int	main_execute(t_command *commands)
+{
+	int		status;
+	size_t	i;
+	int		final;
+	t_tops	pds;
+
+	pds.index_pd = 0;
+	status = exec_command(commands, &pds);
+	if (waitpid((pds.pds_list)[pds.index_pd - 1], &status, 0) > 0)
+	{
+		i = -1;
+		if (kill((pds.pds_list)[pds.index_pd - 1], SIGKILL))
+			while (++i < pds.index_pd)
+				kill((pds.pds_list)[i], SIGKILL);
+	}
+	while (wait(&final) > 0)
+		;
+	while (status > 255)
+		status = status - 255;
+	return (status);
+}
+
 int	main(void)
 {
 	t_command	*commands;
 	char		*line;
 	int			status;
 
+	environ_to_heap();
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 	commands = NULL;
 	while (true)
 	{
 		line = readline("miniSH$ ");
-		if (!line)
+		if (EOF && !line)
 			break ;
 		if (main_preprocess(line, &commands))
 			continue ;
-		exec_command(commands);
-		while (wait(&status) > 0)
-			;
-		if (status > 255)
-			status = status - 255;
+		status = main_execute(commands);
 		line = ft_itoa(status);
 		utils_update_var("?", line);
 		free(line);
 		parser_free(commands);
 	}
+	free_environ();
 }

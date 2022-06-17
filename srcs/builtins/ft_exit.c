@@ -6,19 +6,29 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:48:28 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 02:16:36 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/16 21:47:20 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 #include <libft.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <utils.h>
+#include <unistd.h>
 
 ssize_t	ft_exit(char const **argv, int fdin, int fdout)
 {
+	char	*var;
+	int		code;
+
+	var = get_env("?");
+	code = ft_atoi(var);
 	(void)fdin;
 	(void)fdout;
-	exit(ft_atoi(*(argv + 1)));
+	free_environ();
+	write(1, "exit\n", 5);
+	if (*(argv + 1))
+		exit(ft_atoi(*(argv + 1)));
+	exit(code);
 	return (0);
 }

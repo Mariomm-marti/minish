@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 00:52:23 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 11:56:42 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/16 23:55:24 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,18 @@ static void	show_vars(int fdout)
 	size_t		i;
 	size_t		j;
 	char		*actual_var;
-	extern char	**environ;
 
 	i = 0;
-	while (*(environ + i))
+	while (*(g_environ_heap + i))
 	{
 		j = 0;
-		if (ft_strncmp(*(environ + i), "?", 1) == 0)
+		if (ft_strncmp(*(g_environ_heap + i), "?", 1) == 0)
 		{
 			i++;
 			continue ;
 		}
 		write(fdout, "declare -x ", 11);
-		actual_var = *(environ + i);
+		actual_var = *(g_environ_heap + i);
 		while (*(actual_var + j) && *(actual_var + j) != '=')
 		{
 			write(fdout, actual_var + j, 1);

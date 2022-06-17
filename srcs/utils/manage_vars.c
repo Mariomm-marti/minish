@@ -6,7 +6,7 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:47:36 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/30 12:29:26 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:55:50 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,18 @@
 #include <utils.h>
 #include <libft.h>
 #include <stdbool.h>
-#include <stdlib.h>
-
-#include <stdio.h>
+#include <stdlib.h> 
 
 static char	what_action_var(char *var, char *content)
 {
-	if (getenv(var))
+	if (get_env(var))
 	{
 		if (!content)
-			return (DELETE);
+			return (DE);
 		else
-			return (CHANGE);
+			return (CH);
 	}
-	return (CREATE);
-}
-
-static size_t	environ_len(void)
-{
-	extern char	**environ;
-	size_t		env_len;
-
-	env_len = 0;
-	while (*(environ + env_len))
-		env_len++;
-	return (env_len);
+	return (CR);
 }
 
 static char	*utils_generate_var(char *var, char *newcont)
@@ -64,33 +51,33 @@ static char	*utils_generate_var(char *var, char *newcont)
 	return (newvar);
 }
 
-static void	update_action(char **newenv, char *var, char *content, char chd)
+static void	update_action(char **newenv, char *v, char *content, char c)
 {
-	extern char	**environ;
 	size_t		i;
+	size_t		enlen;
 	bool		dlte;
 
 	dlte = false;
+	enlen = environ_len();
 	i = -1;
-	while (++i < environ_len())
+	while (++i < enlen)
 	{
-		if (!ft_strncmp(*(environ + i), var, ft_strlen(var)))
+		if (!ft_strncmp(*(g_environ_heap + i), v, ft_strlen(v)) && c == CH)
 		{
-			if (chd == CHANGE)
-			{
-				*(newenv + i++) = utils_generate_var(var, content);
-				free(*(environ + i - 1 + dlte));
-				continue ;
-			}
-			if (chd == DELETE)
-				dlte = true;
+			*(newenv + i) = utils_generate_var(v, content);
+			free(*(g_environ_heap + i + dlte));
+			continue ;
 		}
-		*(newenv + i) = *(environ + i + dlte);
+		else if (!ft_strncmp(*(g_environ_heap + i), v, ft_strlen(v)) && c == DE)
+		{
+			free(*(g_environ_heap + i + dlte));
+			dlte = true;
+		}
+		*(newenv + i) = *(g_environ_heap + i + dlte);
 	}
-	if (chd == CREATE)
-		*(newenv + i) = utils_generate_var(var, content);
-	free(environ);
-	environ = newenv;
+	if (c == CR)
+		*(newenv + i) = utils_generate_var(v, content);
+	free(g_environ_heap);
 }
 
 void	utils_update_var(char *var, char *content)
@@ -106,4 +93,5 @@ void	utils_update_var(char *var, char *content)
 	if (!newenv)
 		return ;
 	update_action(newenv, var, content, chd);
+	g_environ_heap = newenv;
 }

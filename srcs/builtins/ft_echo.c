@@ -14,7 +14,6 @@
 #include <libft.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <stdio.h> ///
 
 static bool	is_correct_flag(char first_char, char next_char)
 {

@@ -6,7 +6,7 @@
 /*   By: vim <vim@42urduliz.com>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 20:31:30 by vim               #+#    #+#             */
-/*   Updated: 2022/04/29 02:13:19 by mmartin-         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:35:04 by mmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*resolve_var(char *user_in, char *resolved)
 	char			*var_content;
 
 	var_name = ft_substr(user_in, 1, var_len);
-	var_content = getenv(var_name);
+	var_content = get_env(var_name);
 	if (!var_content)
 	{
 		free(var_name);

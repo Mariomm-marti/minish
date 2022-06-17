@@ -6,12 +6,13 @@
 /*   By: mortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:34:44 by mortega-          #+#    #+#             */
-/*   Updated: 2022/04/29 06:13:35 by mortega-         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:59:58 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <command.h>
 #include <piper.h>
+#include <utils.h>
 #include <unistd.h>
 #include <builtins.h>
 #include <libft.h>
@@ -34,11 +35,10 @@ int	seek_builtin(char *cmd)
 	return (-1);
 }
 
-ssize_t	execute(t_command *cmd, int p[2], char last)
+ssize_t	execute(t_command *cmd, int p[2], char last, t_tops *pds)
 {
 	pid_t				pid;
 	int					blt;
-	extern char			**environ;
 	const t_builtin		table[7] = {ft_echo, ft_export, ft_unset, ft_cd,
 		ft_pwd, ft_exit, ft_env};
 
@@ -46,6 +46,7 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 	if (blt < 0)
 	{
 		pid = fork();
+		pds->pds_list[(pds->index_pd)++] = pid;
 		if (pid != 0)
 			return (0);
 		if (last == 0)
@@ -60,10 +61,10 @@ ssize_t	execute(t_command *cmd, int p[2], char last)
 	if (blt >= 0)
 		return (table[blt]((const char **)cmd->argv, cmd->fdin, cmd->fdout));
 	else
-		return (execve(cmd->cmd, cmd->argv, environ));
+		return (execve(cmd->cmd, cmd->argv, g_environ_heap));
 }
 
-void	exec_command(t_command *cmd)
+size_t	exec_command(t_command *cmd, t_tops *pds)
 {
 	int			p[2];
 	t_command	*cmd1;
@@ -74,14 +75,15 @@ void	exec_command(t_command *cmd)
 	while (cmd2)
 	{
 		pipe(p);
-		cmd1->fdout = p[1];
+		if (cmd1->fdout == 1)
+			cmd1->fdout = p[1];
 		cmd2->fdin = p[0];
-		execute(cmd1, p, 0);
+		execute(cmd1, p, 0, pds);
 		close(p[1]);
 		if (cmd1->fdin)
 			close(cmd1->fdin);
 		cmd1 = cmd1->next;
 		cmd2 = cmd2->next;
 	}
-	execute(cmd1, p, 1);
+	return (execute(cmd1, p, 1, pds));
 }
