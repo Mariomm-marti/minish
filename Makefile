@@ -61,8 +61,8 @@ MINISH_TOBJS	= $(MINISH_TSRCS:.c=.o)
 
 MINISH_NAME		= minishell
 
-RL_INC			= $(HOME)/.brew/opt/readline/include
-RL_LIB			= $(HOME)/.brew/opt/readline/lib
+RL_INC      = /opt/homebrew/opt/readline/include/
+RL_LIB      = /opt/homebrew/opt/readline/lib/
 
 %.o : %.c
 				@printf "  \x1b[40m\x1b[38;2;16;19;33m\x1b[40m\x1b[01;37m     miniSH \x1b[0m\x1b[30m\x1b[0m\x1b[0;90m Compiling \x1b[0;30m$@...                \x1b[0m\r"
