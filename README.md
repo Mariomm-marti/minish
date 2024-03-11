@@ -16,6 +16,7 @@ The project is completely built in C with limited external libraries (namely `re
 ## Features
 This small bash-like shell offers the following features, from which you can
 expect a similar behaviour to the one you'd find in bash.
+
 [x] A prompt
     [x] Fully functional history (using [readline](https://tiswww.case.edu/php/chet/readline/rltop.html))
 [x] Environment variables
