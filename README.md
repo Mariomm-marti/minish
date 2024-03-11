@@ -51,6 +51,7 @@ expect a similar behaviour to the one you'd find in bash.
 
 ## Compiling and using
 > ⚠️  The usage of `readline` is necessary! You can install it in MacOS using `brew install readline`.
+
 > ⚠️  The expected path for `readline` is `/opt/homebrew/opt/readline/`. Other paths must be indicated
 > by replacing the variables `RL_LIB` and `RL_INC` on the Makefile.
 
